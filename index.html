@@ -250,7 +250,7 @@
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
         <div>
-          <h1>Mi Mundo de Juegos 🚀</h1>
+          <h1>El Mundo de Juegos de Fernando 🚀</h1>
           <p class="subtitle">Para aprender y divertirse (5 años)</p>
         </div>
       </div>
@@ -273,7 +273,7 @@
         <div class="heroLeft">
           <div class="bigEmoji" aria-hidden="true">🦖</div>
           <div>
-            <h2>¡Hola Bienvenido a la página web de Fernando! 👋</h2>
+            <h2>¡Hola bienvenido a la página web de Fernando! 👋</h2>
             <p>Elige una sección arriba. Aquí hay mini‑juegos, lectura, escritura y sorpresas.</p>
             <p class="footerNote">Tip: sesiones cortas (10–15 min) funcionan mejor. ⭐</p>
           </div>
@@ -468,12 +468,17 @@
             </div>
             <div class="actions">
               <select id="colorTemplate" class="tag" style="padding:8px 10px;">
-                <option value="dino" selected>🦖 Dino</option>
+                <option value="free" selected>🆓 Libre</option>
+                <option value="dino">🦖 Dino</option>
                 <option value="car">🚗 Carro</option>
                 <option value="rocket">🚀 Cohete</option>
                 <option value="star">⭐ Estrella</option>
               </select>
               <button id="btnColorReset">🧽 Limpiar</button>
+              <label class="tag" style="display:flex; gap:8px; align-items:center; cursor:pointer;">
+                <input id="showGuide" type="checkbox" checked style="accent-color:#22c55e;" />
+                Guía
+              </label>
             </div>
           </div>
           <div class="actions" style="margin-top:10px;">
@@ -871,11 +876,42 @@
       cctx.fillStyle = 'rgba(255,255,255,.92)';
       cctx.fillRect(0,0,W,H);
 
+      // optional guide (light grid)
+      if($('#showGuide')?.checked){
+        cctx.save();
+        cctx.globalAlpha = 0.12;
+        cctx.strokeStyle = '#475569';
+        cctx.lineWidth = 1;
+        for(let x=20; x<W; x+=40){
+          cctx.beginPath(); cctx.moveTo(x, 0); cctx.lineTo(x, H); cctx.stroke();
+        }
+        for(let y=20; y<H; y+=40){
+          cctx.beginPath(); cctx.moveTo(0, y); cctx.lineTo(W, y); cctx.stroke();
+        }
+        cctx.restore();
+      }
+
+      if(key === 'free') return; // dibujo libre
+
       cctx.save();
       cctx.strokeStyle = '#0f172a';
       cctx.lineWidth = 5;
       cctx.lineJoin = 'round';
       cctx.lineCap = 'round';
+
+      const rr = (x,y,w,h,r) => {
+        // roundRect fallback
+        if(typeof cctx.roundRect === 'function'){
+          cctx.roundRect(x,y,w,h,r);
+          return;
+        }
+        const rad = Math.min(r, w/2, h/2);
+        cctx.moveTo(x+rad, y);
+        cctx.arcTo(x+w, y, x+w, y+h, rad);
+        cctx.arcTo(x+w, y+h, x, y+h, rad);
+        cctx.arcTo(x, y+h, x, y, rad);
+        cctx.arcTo(x, y, x+w, y, rad);
+      };
 
       if(key === 'dino'){
         cctx.beginPath();
@@ -887,8 +923,8 @@
         cctx.stroke();
 
         cctx.beginPath();
-        cctx.roundRect(cx-120, cy+70, 50, 70, 18);
-        cctx.roundRect(cx-40,  cy+70, 50, 70, 18);
+        rr(cx-120, cy+70, 50, 70, 18);
+        rr(cx-40,  cy+70, 50, 70, 18);
         cctx.stroke();
 
         cctx.beginPath();
@@ -912,16 +948,16 @@
       }
       else if(key === 'car'){
         cctx.beginPath();
-        cctx.roundRect(cx-170, cy+10, 340, 100, 30);
+        rr(cx-170, cy+10, 340, 100, 30);
         cctx.stroke();
 
         cctx.beginPath();
-        cctx.roundRect(cx-110, cy-60, 220, 80, 26);
+        rr(cx-110, cy-60, 220, 80, 26);
         cctx.stroke();
 
         cctx.beginPath();
-        cctx.roundRect(cx-80, cy-45, 90, 55, 18);
-        cctx.roundRect(cx+10, cy-45, 90, 55, 18);
+        rr(cx-80, cy-45, 90, 55, 18);
+        rr(cx+10, cy-45, 90, 55, 18);
         cctx.stroke();
 
         [cx-110, cx+110].forEach(wx => {
@@ -935,7 +971,7 @@
       }
       else if(key === 'rocket'){
         cctx.beginPath();
-        cctx.roundRect(cx-60, cy-90, 120, 220, 60);
+        rr(cx-60, cy-90, 120, 220, 60);
         cctx.stroke();
 
         cctx.beginPath();
@@ -1006,12 +1042,35 @@
     }
     function cEnd(){ coloring = false; clast = null; }
 
-    colorCanvas.addEventListener('mousedown', cStart);
-    window.addEventListener('mousemove', cMove);
-    window.addEventListener('mouseup', cEnd);
-    colorCanvas.addEventListener('touchstart', cStart, {passive:false});
-    colorCanvas.addEventListener('touchmove', cMove, {passive:false});
-    colorCanvas.addEventListener('touchend', cEnd);
+    // Usamos Pointer Events para que funcione igual en mouse y touch
+    function cPointerDown(e){
+      coloring = true;
+      colorCanvas.setPointerCapture?.(e.pointerId);
+      clast = pointFromEvent(e, colorCanvas);
+      e.preventDefault?.();
+    }
+    function cPointerMove(e){
+      if(!coloring) return;
+      const p = pointFromEvent(e, colorCanvas);
+      cctx.save();
+      cctx.strokeStyle = paintColor;
+      cctx.lineWidth = paintSize;
+      cctx.lineCap = 'round';
+      cctx.lineJoin = 'round';
+      cctx.beginPath();
+      cctx.moveTo(clast.x, clast.y);
+      cctx.lineTo(p.x, p.y);
+      cctx.stroke();
+      cctx.restore();
+      clast = p;
+      e.preventDefault?.();
+    }
+    function cPointerUp(){ coloring = false; clast = null; }
+
+    colorCanvas.addEventListener('pointerdown', cPointerDown);
+    colorCanvas.addEventListener('pointermove', cPointerMove);
+    colorCanvas.addEventListener('pointerup', cPointerUp);
+    colorCanvas.addEventListener('pointercancel', cPointerUp);
 
     $$('[data-color]').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -1028,6 +1087,13 @@
 
     $('#colorTemplate').addEventListener('change', () => {
       drawTemplate($('#colorTemplate').value);
+      toast($('#colorTemplate').value === 'free' ? 'Dibujo libre 🆓' : 'Nuevo dibujo 🎨');
+    });
+
+    $('#showGuide').addEventListener('change', () => {
+      drawTemplate($('#colorTemplate').value);
+      toast($('#showGuide').checked ? 'Guía ON ✅' : 'Guía OFF ✅');
+    });
       toast('Nuevo dibujo 🎨');
     });
 
