@@ -1090,10 +1090,13 @@
       toast($('#colorTemplate').value === 'free' ? 'Dibujo libre 🆓' : 'Nuevo dibujo 🎨');
     });
 
-    $('#showGuide').addEventListener('change', () => {
-      drawTemplate($('#colorTemplate').value);
-      toast($('#showGuide').checked ? 'Guía ON ✅' : 'Guía OFF ✅');
-    });
+   const showGuide = $('#showGuide');
+if (showGuide) {
+  showGuide.addEventListener('change', () => {
+    drawTemplate($('#colorTemplate').value);
+    toast(showGuide.checked ? 'Guía ON ✅' : 'Guía OFF ✅');
+  });
+}
       toast('Nuevo dibujo 🎨');
     });
 
