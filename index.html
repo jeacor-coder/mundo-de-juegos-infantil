@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mi Mundo de Juegos 🎈</title>
+  <title>Mi Mundo de Juegos 🚀</title>
   <style>
     :root{
       --bg:#f0f9ff;            /* azul cielo */
@@ -20,17 +20,17 @@
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--ink);
       background:
-        radial-gradient(circle at 10% 10%, #ffe7f3, transparent 45%),
-        radial-gradient(circle at 90% 20%, #e7f3ff, transparent 40%),
-        radial-gradient(circle at 50% 90%, #e8fff1, transparent 45%),
+        radial-gradient(circle at 10% 10%, #dbeafe, transparent 45%),
+        radial-gradient(circle at 90% 20%, #dcfce7, transparent 40%),
+        radial-gradient(circle at 50% 90%, #fef9c3, transparent 45%),
         var(--bg);
       min-height:100vh;
     }
     header{
       position:sticky; top:0; z-index:10;
       backdrop-filter: blur(10px);
-      background: rgba(255,247,251,.75);
-      border-bottom: 1px solid rgba(229,231,235,.7);
+      background: rgba(240,249,255,.78);
+      border-bottom: 1px solid rgba(219,234,254,.9);
     }
     .wrap{max-width:1100px; margin:0 auto; padding:14px 16px;}
     .topbar{display:flex; align-items:center; gap:12px; justify-content:space-between; flex-wrap:wrap;}
@@ -42,7 +42,7 @@
       position:relative;
     }
     .logo:after{
-      content:"🚀"; /* cohete */
+      content:"🚀";
       position:absolute; inset:0;
       display:grid; place-items:center;
       font-size:22px; color:#ffffff; text-shadow:0 3px 10px rgba(0,0,0,.25);
@@ -51,26 +51,26 @@
     .subtitle{margin:0; color:var(--muted); font-size:12px}
     nav{display:flex; gap:8px; flex-wrap:wrap;}
     .pill{
-      border:1px solid rgba(229,231,235,.9);
-      background: rgba(255,255,255,.75);
+      border:1px solid rgba(219,234,254,.95);
+      background: rgba(255,255,255,.78);
       padding:8px 10px;
       border-radius:999px;
-      font-weight:700;
+      font-weight:800;
       font-size:12px;
       cursor:pointer;
       user-select:none;
       transition: transform .08s ease, box-shadow .12s ease;
     }
     .pill:active{transform: translateY(1px) scale(.99)}
-    .pill:hover{box-shadow: 0 6px 18px rgba(31,41,55,.10)}
+    .pill:hover{box-shadow: 0 6px 18px rgba(2,6,23,.10)}
 
-    main{max-width:1100px; margin:0 auto; padding:18px 16px 60px;}
+    main{max-width:1100px; margin:0 auto; padding:18px 16px 70px;}
     .grid{display:grid; grid-template-columns: 1.2fr .8fr; gap:14px;}
     @media (max-width: 920px){.grid{grid-template-columns:1fr;}}
 
     .card{
-      background: rgba(255,255,255,.86);
-      border:1px solid rgba(229,231,235,.9);
+      background: rgba(255,255,255,.88);
+      border:1px solid rgba(219,234,254,.95);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding:16px;
@@ -78,40 +78,32 @@
     .card h2{margin:0 0 10px; font-size:16px}
     .card p{margin:6px 0; color:var(--muted)}
 
-    .hero{
-      display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap;
-    }
+    .hero{display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap;}
     .heroLeft{display:flex; gap:12px; align-items:center;}
     .bigEmoji{font-size:44px; filter: drop-shadow(0 10px 18px rgba(0,0,0,.08));}
-    .actions{display:flex; gap:10px; flex-wrap:wrap;}
+
+    .actions{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
     button{
-      border:1px solid rgba(229,231,235,.9);
+      border:1px solid rgba(219,234,254,.95);
       background:#fff;
       padding:10px 12px;
       border-radius: 14px;
-      font-weight:800;
+      font-weight:900;
       cursor:pointer;
-      box-shadow: 0 6px 16px rgba(31,41,55,.08);
+      box-shadow: 0 6px 16px rgba(2,6,23,.08);
       transition: transform .08s ease;
     }
     button:active{transform: translateY(1px) scale(.99)}
-    .btnPrimary{
-      background: linear-gradient(135deg, #38bdf8, #22c55e);
-      color:#fff; border-color:transparent;
-    }
+    .btnPrimary{background: linear-gradient(135deg, #38bdf8, #22c55e); color:#fff; border-color:transparent;}
+    .btnGhost{background: rgba(255,255,255,.7);}
 
     /* Gallery */
     .galleryTop{display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;}
-    .gallery{
-      margin-top:12px;
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:10px;
-    }
+    .gallery{margin-top:12px; display:grid; grid-template-columns: repeat(3, 1fr); gap:10px;}
     @media (max-width: 560px){.gallery{grid-template-columns: repeat(2, 1fr);}}
     .tile{
-      border:1px solid rgba(229,231,235,.9);
-      background: rgba(255,255,255,.9);
+      border:1px solid rgba(219,234,254,.95);
+      background: rgba(255,255,255,.92);
       border-radius: 18px;
       overflow:hidden;
       min-height:110px;
@@ -122,81 +114,134 @@
     .tile .placeholder{font-size:44px;}
     .tile .label{
       position:absolute; left:10px; bottom:10px;
-      background: rgba(255,255,255,.85);
-      border:1px solid rgba(229,231,235,.9);
+      background: rgba(255,255,255,.86);
+      border:1px solid rgba(219,234,254,.95);
       padding:6px 8px;
       border-radius: 999px;
-      font-weight:800;
+      font-weight:900;
       font-size:12px;
     }
 
-    /* Social */
-    .socialRow{display:flex; gap:10px; flex-wrap:wrap;}
-    .socialIcon{
-      width:44px; height:44px;
-      border-radius: 16px;
-      display:grid; place-items:center;
-      border:1px solid rgba(229,231,235,.9);
-      background: rgba(255,255,255,.92);
-      box-shadow: 0 6px 16px rgba(31,41,55,.08);
-      cursor:pointer;
-      user-select:none;
-      font-size:20px;
-    }
-
-    /* Syllables */
-    .syllWrap{display:grid; gap:12px;}
-    .syllBox{
-      display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
-      border:1px dashed rgba(107,114,128,.35);
-      border-radius: 18px;
-      padding:12px;
-      background: rgba(255,255,255,.7);
-    }
-    .syllBig{font-size:42px; font-weight:900; letter-spacing:1px;}
-    .syllControls{display:flex; gap:10px; flex-wrap:wrap;}
-    .tag{font-size:12px; font-weight:800; padding:6px 10px; border-radius:999px; border:1px solid rgba(229,231,235,.9); background:#fff;}
+    /* Tags */
+    .tag{font-size:12px; font-weight:900; padding:6px 10px; border-radius:999px; border:1px solid rgba(219,234,254,.95); background:#fff;}
 
     /* Tracing */
     .traceTop{display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;}
     canvas{
       width:100%;
       height:260px;
-      background: rgba(255,255,255,.9);
-      border:1px solid rgba(229,231,235,.9);
+      background: rgba(255,255,255,.92);
+      border:1px solid rgba(219,234,254,.95);
       border-radius: 18px;
       touch-action:none;
     }
 
-    /* Matching game */
+    /* Games menu */
+    .gamesMenu{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+    }
+    @media (max-width: 700px){.gamesMenu{grid-template-columns: repeat(2, 1fr);}}
+    .gameIcon{
+      border:1px solid rgba(219,234,254,.95);
+      background: rgba(255,255,255,.92);
+      border-radius: 18px;
+      padding:12px;
+      min-height:92px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      cursor:pointer;
+      user-select:none;
+      box-shadow: 0 6px 16px rgba(2,6,23,.06);
+      transition: transform .08s ease, box-shadow .12s ease;
+    }
+    .gameIcon:active{transform: translateY(1px) scale(.99)}
+    .gameIcon:hover{box-shadow: 0 10px 22px rgba(2,6,23,.10)}
+    .gameIcon .ico{font-size:32px;}
+    .gameIcon .meta{display:grid; gap:2px;}
+    .gameIcon .name{font-weight:1000;}
+    .gameIcon .desc{color:var(--muted); font-size:12px; font-weight:800;}
+
+    .panelTop{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;}
+
+    /* Matching/memorama */
     .matchGrid{display:grid; grid-template-columns: repeat(4, 1fr); gap:10px; margin-top:10px;}
     @media (max-width: 560px){.matchGrid{grid-template-columns: repeat(3, 1fr);}}
     .matchCard{
-      border:1px solid rgba(229,231,235,.9);
-      background: rgba(255,255,255,.92);
+      border:1px solid rgba(219,234,254,.95);
+      background: rgba(255,255,255,.94);
       border-radius: 18px;
       min-height:74px;
       display:grid; place-items:center;
       font-size:28px;
       cursor:pointer;
       user-select:none;
-      position:relative;
       transition: transform .08s ease, box-shadow .12s ease;
     }
     .matchCard:active{transform: translateY(1px) scale(.99)}
-    .matchCard.revealed{box-shadow: 0 10px 22px rgba(31,41,55,.12)}
-    .matchCard.matched{opacity:.6}
+    .matchCard.matched{opacity:.55}
+
+    /* Number-quantity */
+    .numBig{font-size:64px; font-weight:1000; line-height:1;}
+    .dots{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
+    .dot{width:44px; height:44px; border-radius:16px; display:grid; place-items:center; border:1px solid rgba(219,234,254,.95); background: rgba(255,255,255,.92); font-size:24px;}
+
+    /* Missing */
+    .rowCards{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;}
+    .bigCard{
+      width:84px; height:84px; border-radius:22px;
+      display:grid; place-items:center;
+      border:1px solid rgba(219,234,254,.95);
+      background: rgba(255,255,255,.92);
+      font-size:36px;
+      user-select:none;
+    }
+
+    /* Sequence */
+    .seqSlots{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;}
+    .slot{width:84px; height:84px; border-radius:22px; display:grid; place-items:center; border:2px dashed rgba(71,85,105,.35); background: rgba(255,255,255,.75); font-size:36px;}
+    .choices{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;}
+    .choice{width:84px; height:84px; border-radius:22px; display:grid; place-items:center; border:1px solid rgba(219,234,254,.95); background: rgba(255,255,255,.92); font-size:36px; cursor:pointer; user-select:none;}
+
+    /* Social */
+    .socialGrid{display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-top:10px;}
+    @media (max-width: 560px){.socialGrid{grid-template-columns: repeat(2, 1fr);}}
+    .socialBtn{
+      border:1px solid rgba(219,234,254,.95);
+      background: rgba(255,255,255,.92);
+      border-radius: 18px;
+      padding:12px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      cursor:pointer;
+      user-select:none;
+      box-shadow: 0 6px 16px rgba(2,6,23,.06);
+    }
+    .socialBtn .ico{font-size:26px;}
+    .socialBtn .txt{display:grid; gap:2px;}
+    .socialBtn .txt b{font-size:13px;}
+    .socialBtn .txt span{font-size:12px; color:var(--muted); font-weight:800;}
 
     .footerNote{color:var(--muted); font-size:12px; margin-top:10px}
+
     .toast{
       position: fixed; left:50%; bottom:16px; transform: translateX(-50%);
-      background: rgba(17,24,39,.92); color:#fff;
+      background: rgba(2,6,23,.92); color:#fff;
       padding:10px 12px; border-radius: 999px;
-      font-weight:800; font-size:12px;
+      font-weight:900; font-size:12px;
       box-shadow: 0 12px 30px rgba(0,0,0,.18);
       display:none;
-      z-index:20;
+      z-index:50;
+      max-width: calc(100vw - 28px);
+      text-align:center;
     }
+
+    /* Hide/show panels */
+    [hidden]{display:none !important;}
   </style>
 </head>
 <body>
@@ -205,15 +250,16 @@
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
         <div>
-          <h1>Mi Mundo de Juegos 🎈</h1>
+          <h1>Mi Mundo de Juegos 🚀</h1>
           <p class="subtitle">Para aprender y divertirse (5 años)</p>
         </div>
       </div>
       <nav>
-        <div class="pill" data-scroll="#galeria">🧸 Peluches</div>
-        <div class="pill" data-scroll="#silabas">🔤 Sílabas</div>
+        <div class="pill" data-scroll="#juegos">🎮 Juegos</div>
+        <div class="pill" data-scroll="#lectura">📘 Lectura</div>
         <div class="pill" data-scroll="#trazo">✍️ Trazos</div>
-        <div class="pill" data-scroll="#memorama">🧠 Memorama</div>
+        <div class="pill" data-scroll="#efectos">🎶 Efectos</div>
+        <div class="pill" data-scroll="#galeria">🧸 Peluches</div>
         <div class="pill" data-scroll="#redes">🌈 Redes</div>
       </nav>
     </div>
@@ -223,16 +269,16 @@
     <section class="card" id="inicio">
       <div class="hero">
         <div class="heroLeft">
-          <div class="bigEmoji" aria-hidden="true">🦄</div>
+          <div class="bigEmoji" aria-hidden="true">🦖</div>
           <div>
-            <h2>¡Bienvenido a la página web de Fernando! 👋</h2>
-            <p>Elige una sección arriba. Aquí hay mini-juegos rápidos, sin internet y sin anuncios.</p>
-            <p class="footerNote">Tip para papá/mamá: esta página funciona mejor en pantalla completa. ✅</p>
+            <h2>¡Hola Bienvenido a la página web de Fernando! 👋</h2>
+            <p>Elige una sección arriba. Aquí hay mini‑juegos, lectura, escritura y sorpresas.</p>
+            <p class="footerNote">Tip: sesiones cortas (10–15 min) funcionan mejor. ⭐</p>
           </div>
         </div>
         <div class="actions">
-          <button class="btnPrimary" id="btnConfetti">🎉 ¡Fiesta!</button>
-          <button id="btnSound">🔊 Sonidito</button>
+          <button class="btnPrimary" id="btnConfetti">🎉 Fiesta</button>
+          <button id="btnSound">🔊 Beep</button>
         </div>
       </div>
     </section>
@@ -242,83 +288,174 @@
       <!-- Left column -->
       <div class="stack" style="display:grid; gap:14px;">
 
-        <section class="card" id="galeria">
-          <div class="galleryTop">
+        <!-- GAMES (menu + panels) -->
+        <section class="card" id="juegos">
+          <div class="panelTop">
             <div>
-              <h2>Galería de Peluches 🧸</h2>
-              <p>Puedes subir fotos desde tu compu/cel. (Se quedan solo en tu navegador.)</p>
+              <h2>Juegos 🎮</h2>
+              <p>Elige un ícono para jugar. (Puedes volver al menú cuando quieras.)</p>
             </div>
-            <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-              <label class="tag" for="fileInput" style="cursor:pointer;">📷 Agregar fotos</label>
-              <input id="fileInput" type="file" accept="image/*" multiple style="display:none" />
-              <button id="btnClearGallery" title="Borra fotos cargadas">🧹 Limpiar</button>
+            <div class="actions">
+              <button class="btnGhost" id="btnBackToMenu" hidden>⬅️ Volver</button>
             </div>
           </div>
 
-          <div class="gallery" id="gallery">
-            <div class="tile" data-default="1"><div class="placeholder">🧸</div><div class="label">Oso</div></div>
-            <div class="tile" data-default="1"><div class="placeholder">🐰</div><div class="label">Conejo</div></div>
-            <div class="tile" data-default="1"><div class="placeholder">🦖</div><div class="label">Dino</div></div>
-            <div class="tile" data-default="1"><div class="placeholder">🐻‍❄️</div><div class="label">Polar</div></div>
-            <div class="tile" data-default="1"><div class="placeholder">🐙</div><div class="label">Pulpo</div></div>
-            <div class="tile" data-default="1"><div class="placeholder">🦊</div><div class="label">Zorro</div></div>
+          <!-- Games Menu -->
+          <div id="gamesMenu" class="gamesMenu" aria-label="Menú de juegos">
+            <div class="gameIcon" data-open="memorama">
+              <div class="ico">🧠</div>
+              <div class="meta">
+                <div class="name">Memorama</div>
+                <div class="desc">Encuentra parejas</div>
+              </div>
+            </div>
+            <div class="gameIcon" data-open="parejas">
+              <div class="ico">🔗</div>
+              <div class="meta">
+                <div class="name">Parejas</div>
+                <div class="desc">Cosas que van juntas</div>
+              </div>
+            </div>
+            <div class="gameIcon" data-open="numeros">
+              <div class="ico">🔢</div>
+              <div class="meta">
+                <div class="name">Números</div>
+                <div class="desc">Número + cantidad</div>
+              </div>
+            </div>
+            <div class="gameIcon" data-open="falta">
+              <div class="ico">❓</div>
+              <div class="meta">
+                <div class="name">¿Cuál falta?</div>
+                <div class="desc">Completa el patrón</div>
+              </div>
+            </div>
+            <div class="gameIcon" data-open="secuencia">
+              <div class="ico">🧩</div>
+              <div class="meta">
+                <div class="name">Secuencias</div>
+                <div class="desc">Ordena la historia</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Game Panels -->
+          <div id="gamePanels" hidden>
+
+            <!-- Memorama -->
+            <div id="game-memorama" hidden>
+              <div class="panelTop" style="margin-top:10px;">
+                <div class="actions">
+                  <button id="btnNewMatch" class="btnPrimary">🔄 Nuevo</button>
+                  <span class="tag">Intentos: <span id="tries">0</span></span>
+                  <span class="tag">Parejas: <span id="pairs">0</span>/6</span>
+                </div>
+              </div>
+              <div class="matchGrid" id="matchGrid" aria-label="Cartas de memorama"></div>
+              <p class="footerNote">Tip: si está difícil, juega con 4 parejas (lo puedo ajustar si quieres).</p>
+            </div>
+
+            <!-- Related pairs -->
+            <div id="game-parejas" hidden>
+              <div class="panelTop" style="margin-top:10px;">
+                <div class="actions">
+                  <button id="btnNewPairs" class="btnPrimary">🔄 Nuevo</button>
+                  <span class="tag">Aciertos: <span id="pairHits">0</span>/6</span>
+                </div>
+              </div>
+              <p class="footerNote">Toca 2 cartas. Si van juntas, ¡ganas un punto! ⭐</p>
+              <div class="matchGrid" id="pairsGrid" aria-label="Cartas de parejas relacionadas"></div>
+            </div>
+
+            <!-- Numbers -->
+            <div id="game-numeros" hidden>
+              <div class="panelTop" style="margin-top:10px;">
+                <div>
+                  <div class="tag">Cuenta los objetos y elige el número.</div>
+                </div>
+                <div class="actions">
+                  <button id="btnNewNumber" class="btnPrimary">🎲 Nuevo</button>
+                  <button id="btnSayNumber">🗣️ Leer</button>
+                </div>
+              </div>
+              <div style="display:flex; gap:14px; align-items:flex-start; flex-wrap:wrap; margin-top:10px;">
+                <div class="card" style="padding:12px; flex: 1 1 220px;">
+                  <div class="numBig" id="numTarget">5</div>
+                  <div class="dots" id="numDots"></div>
+                </div>
+                <div class="card" style="padding:12px; flex: 1 1 220px;">
+                  <div class="tag">Elige:</div>
+                  <div class="rowCards" id="numChoices"></div>
+                </div>
+              </div>
+              <p class="footerNote">Puedes cambiar los emojis a carritos, dinos o pelotas si quieres.</p>
+            </div>
+
+            <!-- Missing -->
+            <div id="game-falta" hidden>
+              <div class="panelTop" style="margin-top:10px;">
+                <div class="actions">
+                  <button id="btnNewMissing" class="btnPrimary">🎲 Nuevo</button>
+                  <span class="tag">Racha: <span id="streak">0</span></span>
+                </div>
+              </div>
+              <p class="footerNote">¿Cuál falta? Mira la fila y completa con la opción correcta.</p>
+              <div class="rowCards" id="missingRow"></div>
+              <div class="rowCards" id="missingOptions" style="margin-top:12px;"></div>
+            </div>
+
+            <!-- Sequence -->
+            <div id="game-secuencia" hidden>
+              <div class="panelTop" style="margin-top:10px;">
+                <div class="actions">
+                  <button id="btnNewSeq" class="btnPrimary">🎲 Nueva</button>
+                  <button id="btnCheckSeq">✅ Revisar</button>
+                </div>
+              </div>
+              <p class="footerNote">Toca las piezas de abajo para llenar los espacios en orden.</p>
+              <div class="seqSlots" id="seqSlots"></div>
+              <div class="choices" id="seqChoices"></div>
+            </div>
+
           </div>
         </section>
 
-        <section class="card" id="silabas">
-          <h2>Juego de Sílabas 🔤</h2>
-          <p>Aprendemos a leer: elige una sílaba y elige una vocal.</p>
-
-          <div class="syllWrap">
-            <div class="syllBox">
-              <div>
-                <div class="tag">Sílaba</div>
-                <div class="syllBig" id="syllable">MA</div>
-              </div>
-              <div class="syllControls">
-                <button id="btnNewSyll">🎲 Cambiar</button>
-                <button id="btnSpeakSyll">🗣️ Decir</button>
-              </div>
+        <!-- Reading / Words -->
+        <section class="card" id="lectura">
+          <h2>Lectura: Palabras reales 📘</h2>
+          <p>Lee una palabra y escúchala. (Funciona si el navegador permite voz.)</p>
+          <div class="card" style="padding:12px;">
+            <div class="tag">Sílabas</div>
+            <div style="font-size:42px; font-weight:1000; letter-spacing:1px;" id="syllable">MA-MA</div>
+            <div class="tag" style="margin-top:8px;">Palabra</div>
+            <div style="font-size:46px; font-weight:1000;" id="word">MAMA</div>
+            <div class="actions" style="margin-top:12px;">
+              <button class="btnPrimary" id="btnNewWord">🎲 Nueva</button>
+              <button id="btnSpeakWord">🗣️ Leer</button>
+              <button id="btnClapWord">👏 ¡Bien!</button>
             </div>
-
-            <div class="syllBox">
-              <div>
-                <div class="tag">Arma una palabra</div>
-                <div class="syllBig" id="word">MA + MA</div>
-              </div>
-              <div class="syllControls">
-                <button id="btnMakeWord">✨ Nueva</button>
-                <button id="btnSpeakWord">🗣️ Decir</button>
-              </div>
-            </div>
-
-            <p class="footerNote">Idea: pídele que encuentre cosas en casa que empiecen con esa sílaba. 🏠</p>
           </div>
+          <p class="footerNote">Tip: pídele que encuentre un objeto que empiece con esa palabra/letra.</p>
         </section>
 
+        <!-- Tracing -->
         <section class="card" id="trazo">
           <div class="traceTop">
             <div>
               <h2>Escritura y Trazos ✍️</h2>
-              <p>Dibuja encima de la letra grande. También sirve para garabatear libre.</p>
+              <p>Elige una letra (A–Z) y si la quieres MAYÚSCULA o minúscula.</p>
             </div>
-            <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-              <select id="letterSelect" class="tag" style="padding:8px 10px;">
-                <option value="A">A</option>
-                <option value="E">E</option>
-                <option value="I">I</option>
-                <option value="O">O</option>
-                <option value="U">U</option>
-                <option value="M" selected>M</option>
-                <option value="P">P</option>
-                <option value="S">S</option>
+            <div class="actions">
+              <select id="letterSelect" class="tag" style="padding:8px 10px;"></select>
+              <select id="caseSelect" class="tag" style="padding:8px 10px;">
+                <option value="upper" selected>MAYÚSCULA</option>
+                <option value="lower">minúscula</option>
               </select>
               <button id="btnTraceReset">🧽 Borrar</button>
             </div>
           </div>
-
-          <canvas id="traceCanvas" width="1000" height="520" aria-label="Zona de trazo"></canvas>
-          <p class="footerNote">Consejo: usa el dedo en tablet o mouse en PC. 📱🖱️</p>
+          <canvas id="traceCanvas" aria-label="Zona de trazo"></canvas>
+          <p class="footerNote">Consejo: dedo en tablet o mouse en PC. 📱🖱️</p>
         </section>
 
       </div>
@@ -326,36 +463,56 @@
       <!-- Right column -->
       <div class="stack" style="display:grid; gap:14px;">
 
-        <section class="card" id="memorama">
-          <h2>Memorama 🧠</h2>
-          <p>Encuentra las parejas. (Toca 2 cartas.)</p>
-          <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-            <button id="btnNewMatch" class="btnPrimary">🔄 Nuevo juego</button>
-            <div class="tag">Intentos: <span id="tries">0</span></div>
-            <div class="tag">Parejas: <span id="pairs">0</span>/6</div>
+        <!-- Effects -->
+        <section class="card" id="efectos">
+          <h2>Efectos y Sonidos 🎶✨</h2>
+          <p>Toca los botones para escuchar sonidos y ver sorpresas.</p>
+          <div class="actions" style="margin-top:10px;">
+            <button id="btnClap">👏 Aplausos</button>
+            <button id="btnPop">🎈 Pop</button>
+            <button id="btnDrum">🥁 Tambor</button>
+            <button id="btnMagic">✨ Magia</button>
+            <button id="btnRocket">🚀 Cohete</button>
           </div>
-          <div class="matchGrid" id="matchGrid" aria-label="Cartas de memorama"></div>
-          <p class="footerNote">Tip: primero juega con 4 parejas para hacerlo más fácil.</p>
+          <p class="footerNote">Estos efectos ayudan a la atención y coordinación causa–efecto.</p>
         </section>
 
+        <!-- Gallery -->
+        <section class="card" id="galeria">
+          <div class="galleryTop">
+            <div>
+              <h2>Galería de Peluches 🧸</h2>
+              <p>Agrega fotos desde tu compu/cel. (Se quedan solo en tu navegador.)</p>
+            </div>
+            <div class="actions">
+              <label class="tag" for="fileInput" style="cursor:pointer;">📷 Agregar</label>
+              <input id="fileInput" type="file" accept="image/*" multiple style="display:none" />
+              <button id="btnClearGallery" title="Borra fotos cargadas">🧹 Limpiar</button>
+            </div>
+          </div>
+          <div class="gallery" id="gallery">
+            <div class="tile" data-default="1"><div class="placeholder">🧸</div><div class="label">Oso</div></div>
+            <div class="tile" data-default="1"><div class="placeholder">🐰</div><div class="label">Conejo</div></div>
+            <div class="tile" data-default="1"><div class="placeholder">🦖</div><div class="label">Dino</div></div>
+            <div class="tile" data-default="1"><div class="placeholder">🐻</div><div class="label">Oso</div></div>
+            <div class="tile" data-default="1"><div class="placeholder">🐙</div><div class="label">Pulpo</div></div>
+            <div class="tile" data-default="1"><div class="placeholder">🦊</div><div class="label">Zorro</div></div>
+          </div>
+        </section>
+
+        <!-- Social -->
         <section class="card" id="redes">
-          <h2>Botones de “Redes” 🌈</h2>
-          <p>No hacen nada (solo para “jugar a los videos”).</p>
-          <div class="socialRow">
-            <div class="socialIcon" data-social="video">▶️</div>
-            <div class="socialIcon" data-social="like">👍</div>
-            <div class="socialIcon" data-social="cam">📸</div>
-            <div class="socialIcon" data-social="chat">💬</div>
-            <div class="socialIcon" data-social="bell">🔔</div>
-            <div class="socialIcon" data-social="share">📤</div>
-          </div>
-          <p class="footerNote">Puedes usar esto para enseñar: “no todo lo que vemos hace cosas”. ✅</p>
+          <h2>Redes (modo juego) 🌈</h2>
+          <p>Son botones de juego: no abren internet. Al tocar, hay una sorpresa.</p>
+          <div class="socialGrid" id="socialGrid"></div>
+          <p class="footerNote">Tip: puedes explicar “esto es solo para jugar”. ✅</p>
         </section>
 
+        <!-- Daily challenge -->
         <section class="card">
-          <h2>Mini-Reto del Día ⭐</h2>
+          <h2>Mini‑Reto del Día ⭐</h2>
           <p id="dailyChallenge">Encuentra 3 cosas rojas en casa. ❤️</p>
-          <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <div class="actions" style="margin-top:10px;">
             <button id="btnNewChallenge">🎲 Otro reto</button>
             <button id="btnReadChallenge">🗣️ Leer</button>
           </div>
@@ -366,7 +523,7 @@
     </div>
 
     <p class="footerNote" style="margin-top:14px;">
-      Privacidad: no subas fotos sensibles; esta página no envía nada a internet, pero si compartes tu pantalla alguien podría verlas.
+      Privacidad: esta página no envía nada a internet. Evita fotos sensibles si compartes tu pantalla.
     </p>
   </main>
 
@@ -405,50 +562,79 @@
       });
     });
 
-    // ---------------------- Confetti (simple) ----------------------
-    $('#btnConfetti').addEventListener('click', () => {
-      // lightweight confetti using emojis
+    // ---------------------- Confetti ----------------------
+    function confettiEmojis(){
       const count = 26;
       for(let i=0;i<count;i++){
         const s = document.createElement('span');
-        s.textContent = ['🎉','✨','🎈','⭐','🫧'][Math.floor(Math.random()*5)];
+        s.textContent = ['🎉','✨','⭐','🫧','💥','⚡'][Math.floor(Math.random()*6)];
         s.style.position='fixed';
         s.style.left = Math.random()*100 + 'vw';
         s.style.top = (-10 - Math.random()*20) + 'px';
         s.style.fontSize = (18 + Math.random()*18) + 'px';
-        s.style.zIndex=30;
+        s.style.zIndex=80;
         s.style.filter='drop-shadow(0 8px 10px rgba(0,0,0,.12))';
         document.body.appendChild(s);
         const fall = 100 + Math.random()*50;
         const drift = (Math.random()*2-1) * 25;
         s.animate([
           { transform:`translate(0,0) rotate(0deg)`, opacity:1 },
-          { transform:`translate(${drift}vw, ${fall}vh) rotate(${360+Math.random()*360}deg)`, opacity:0.1 }
+          { transform:`translate(${drift}vw, ${fall}vh) rotate(${360+Math.random()*360}deg)`, opacity:0.08 }
         ], { duration: 1400 + Math.random()*800, easing:'cubic-bezier(.2,.8,.2,1)' });
         setTimeout(()=> s.remove(), 2400);
       }
+    }
+
+    $('#btnConfetti').addEventListener('click', () => {
+      confettiEmojis();
       toast('¡Fiesta! 🎉');
     });
 
-    // ---------------------- Sound button ----------------------
+    // ---------------------- Audio (simple tones) ----------------------
     let audioCtx = null;
-    $('#btnSound').addEventListener('click', () => {
+    function playTone(freq = 440, time = 0.25, type = 'triangle'){
       try{
         audioCtx ??= new (window.AudioContext || window.webkitAudioContext)();
         const o = audioCtx.createOscillator();
         const g = audioCtx.createGain();
-        o.type = 'triangle';
-        o.frequency.value = 440 + Math.random()*220;
+        o.type = type;
+        o.frequency.value = freq;
         g.gain.value = 0.0001;
         o.connect(g).connect(audioCtx.destination);
         o.start();
-        g.gain.exponentialRampToValueAtTime(0.18, audioCtx.currentTime + 0.02);
-        g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.25);
-        o.stop(audioCtx.currentTime + 0.26);
-        toast('¡Bip! 🔊');
-      }catch{
-        toast('Tu navegador no permite sonido 😅');
-      }
+        g.gain.exponentialRampToValueAtTime(0.2, audioCtx.currentTime + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + time);
+        o.stop(audioCtx.currentTime + time + 0.02);
+      }catch{ /* noop */ }
+    }
+
+    $('#btnSound').addEventListener('click', () => {
+      playTone(520, 0.25);
+      toast('¡Beep! 🔊');
+    });
+
+    // Effects buttons
+    $('#btnClap').addEventListener('click', () => {
+      playTone(320, 0.10); playTone(420, 0.12);
+      toast('¡Bravo! 👏');
+    });
+    $('#btnPop').addEventListener('click', () => {
+      playTone(880, 0.08, 'square');
+      toast('¡Pop! 🎈');
+    });
+    $('#btnDrum').addEventListener('click', () => {
+      playTone(160, 0.18, 'sine');
+      toast('¡Boom! 🥁');
+    });
+    $('#btnMagic').addEventListener('click', () => {
+      confettiEmojis();
+      playTone(600, 0.14); playTone(900, 0.18);
+      toast('¡Magia! ✨');
+    });
+    $('#btnRocket').addEventListener('click', () => {
+      confettiEmojis();
+      playTone(220, 0.08); setTimeout(()=> playTone(440, 0.08), 90); setTimeout(()=> playTone(720, 0.10), 170);
+      toast('¡Despegue! 🚀');
     });
 
     // ---------------------- Gallery upload ----------------------
@@ -458,10 +644,7 @@
     fileInput.addEventListener('change', async (e) => {
       const files = Array.from(e.target.files || []);
       if(!files.length) return;
-
-      // remove default tiles first time
       $$('.tile[data-default="1"]', gallery).forEach(t => t.remove());
-
       for(const f of files){
         if(!f.type.startsWith('image/')) continue;
         const url = await readFileAsDataURL(f);
@@ -482,12 +665,11 @@
     });
 
     $('#btnClearGallery').addEventListener('click', () => {
-      // clear and restore defaults
       gallery.innerHTML = `
         <div class="tile" data-default="1"><div class="placeholder">🧸</div><div class="label">Oso</div></div>
         <div class="tile" data-default="1"><div class="placeholder">🐰</div><div class="label">Conejo</div></div>
         <div class="tile" data-default="1"><div class="placeholder">🦖</div><div class="label">Dino</div></div>
-        <div class="tile" data-default="1"><div class="placeholder">🐻‍❄️</div><div class="label">Polar</div></div>
+        <div class="tile" data-default="1"><div class="placeholder">🐻</div><div class="label">Oso</div></div>
         <div class="tile" data-default="1"><div class="placeholder">🐙</div><div class="label">Pulpo</div></div>
         <div class="tile" data-default="1"><div class="placeholder">🦊</div><div class="label">Zorro</div></div>
       `;
@@ -503,43 +685,35 @@
       });
     }
 
-    // ---------------------- Syllable game ----------------------
-    const bases = ['M','P','S','L','T','N','C','B','D','F','G','R'];
-    const vowels = ['A','E','I','O','U'];
-
-    function randomSyll(){
-      const b = bases[Math.floor(Math.random()*bases.length)];
-      const v = vowels[Math.floor(Math.random()*vowels.length)];
-      return (b+v);
-    }
-
+    // ---------------------- Reading (real words) ----------------------
+    const realWords = [
+      'MAMA','PAPA','CASA','PATO','GATO','SOPA','LUNA','SOL','MESA','SILLA',
+      'MANO','PIE','BOLA','VACA','DADO','PELO','NENE','BEBE','TACO','RISA'
+    ];
     const syllEl = $('#syllable');
     const wordEl = $('#word');
 
-    function setNewSyll(){
-      const s = randomSyll();
-      syllEl.textContent = s;
-      toast('Nueva sílaba: ' + s);
+    function splitSyllablesSimple(w){
+      // Simple visual split in chunks of 2 letters (works OK for kinder words)
+      return (w.match(/.{1,2}/g) || [w]).join('-');
     }
 
-    function setNewWord(){
-      const s1 = randomSyll();
-      const s2 = randomSyll();
-      wordEl.textContent = `${s1} + ${s2}`;
-      toast('¡Nueva combinación! ✨');
+    function newRealWord(){
+      const w = realWords[Math.floor(Math.random()*realWords.length)];
+      wordEl.textContent = w;
+      syllEl.textContent = splitSyllablesSimple(w);
+      toast('Palabra real 📘');
     }
 
-    $('#btnNewSyll').addEventListener('click', setNewSyll);
-    $('#btnSpeakSyll').addEventListener('click', () => speak(syllEl.textContent));
-    $('#btnMakeWord').addEventListener('click', setNewWord);
-    $('#btnSpeakWord').addEventListener('click', () => speak(wordEl.textContent.replace('+','')));
+    $('#btnNewWord').addEventListener('click', newRealWord);
+    $('#btnSpeakWord').addEventListener('click', () => speak(wordEl.textContent));
+    $('#btnClapWord').addEventListener('click', () => { confettiEmojis(); toast('¡Muy bien! ⭐'); });
 
     // ---------------------- Tracing canvas ----------------------
     const canvas = $('#traceCanvas');
     const ctx = canvas.getContext('2d');
 
     function fitCanvas(){
-      // keep internal resolution crisp
       const rect = canvas.getBoundingClientRect();
       const dpr = Math.max(1, window.devicePixelRatio || 1);
       canvas.width  = Math.floor(rect.width * dpr);
@@ -552,7 +726,7 @@
       const rect = canvas.getBoundingClientRect();
       ctx.clearRect(0,0,rect.width,rect.height);
 
-      // background guide lines
+      // guide lines
       ctx.save();
       ctx.globalAlpha = 0.25;
       ctx.lineWidth = 2;
@@ -562,25 +736,26 @@
       ctx.lineTo(rect.width-16, rect.height*0.25);
       ctx.moveTo(16, rect.height*0.75);
       ctx.lineTo(rect.width-16, rect.height*0.75);
-      ctx.strokeStyle = '#6b7280';
+      ctx.strokeStyle = '#475569';
       ctx.stroke();
       ctx.restore();
 
-      // big letter
-      const letter = $('#letterSelect').value;
+      const baseLetter = $('#letterSelect').value;
+      const isUpper = $('#caseSelect').value === 'upper';
+      const letter = isUpper ? baseLetter.toUpperCase() : baseLetter.toLowerCase();
+
       ctx.save();
       ctx.font = `900 ${Math.floor(rect.height*0.62)}px system-ui, -apple-system, Segoe UI, Roboto, Arial`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.globalAlpha = 0.22;
-      ctx.fillStyle = '#111827';
+      ctx.globalAlpha = 0.20;
+      ctx.fillStyle = '#0f172a';
       ctx.fillText(letter, rect.width/2, rect.height/2 + 6);
       ctx.restore();
 
-      // drawing style
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
-      ctx.strokeStyle = '#111827';
+      ctx.strokeStyle = '#0f172a';
       ctx.lineWidth = 8;
     }
 
@@ -593,12 +768,7 @@
       return { x: p.clientX - rect.left, y: p.clientY - rect.top };
     }
 
-    function startDraw(e){
-      drawing = true;
-      last = pointFromEvent(e);
-      e.preventDefault?.();
-    }
-
+    function startDraw(e){ drawing = true; last = pointFromEvent(e); e.preventDefault?.(); }
     function moveDraw(e){
       if(!drawing) return;
       const p = pointFromEvent(e);
@@ -609,29 +779,59 @@
       last = p;
       e.preventDefault?.();
     }
-
-    function endDraw(){
-      drawing = false;
-      last = null;
-    }
+    function endDraw(){ drawing = false; last = null; }
 
     canvas.addEventListener('mousedown', startDraw);
     window.addEventListener('mousemove', moveDraw);
     window.addEventListener('mouseup', endDraw);
-
     canvas.addEventListener('touchstart', startDraw, {passive:false});
     canvas.addEventListener('touchmove', moveDraw, {passive:false});
     canvas.addEventListener('touchend', endDraw);
 
     $('#btnTraceReset').addEventListener('click', () => { drawLetter(); toast('¡Listo! 🧽'); });
-    $('#letterSelect').addEventListener('change', () => { drawLetter(); toast('Letra: ' + $('#letterSelect').value); });
 
-    window.addEventListener('resize', () => {
-      // refit but keep it lightweight
-      fitCanvas();
+    // ---------------------- Games router (menu -> panel) ----------------------
+    const gamesMenu = $('#gamesMenu');
+    const gamePanels = $('#gamePanels');
+    const btnBackToMenu = $('#btnBackToMenu');
+
+    function openGame(key){
+      gamesMenu.hidden = true;
+      gamePanels.hidden = false;
+      btnBackToMenu.hidden = false;
+
+      // hide all panels
+      ['memorama','parejas','numeros','falta','secuencia'].forEach(k => {
+        const el = $('#game-' + k);
+        if(el) el.hidden = true;
+      });
+
+      const panel = $('#game-' + key);
+      if(panel) panel.hidden = false;
+
+      // ensure each game has fresh content if needed
+      if(key === 'memorama') newMatchGame();
+      if(key === 'parejas') newPairsGame();
+      if(key === 'numeros') newNumberGame();
+      if(key === 'falta') newMissingGame();
+      if(key === 'secuencia') newSeqGame();
+
+      toast('¡A jugar! 🎮');
+    }
+
+    function backToMenu(){
+      gamesMenu.hidden = false;
+      gamePanels.hidden = true;
+      btnBackToMenu.hidden = true;
+      toast('Elige un juego 🎮');
+    }
+
+    btnBackToMenu.addEventListener('click', backToMenu);
+    $$('.gameIcon', gamesMenu).forEach(el => {
+      el.addEventListener('click', () => openGame(el.getAttribute('data-open')));
     });
 
-    // ---------------------- Matching game ----------------------
+    // ---------------------- Game 1: Memorama ----------------------
     const allEmojis = ['🐶','🐱','🦊','🐻','🐼','🐸','🐵','🦁','🐷','🐰','🐯','🦄'];
     const matchGrid = $('#matchGrid');
     let revealed = [];
@@ -656,16 +856,14 @@
       const deck = shuffle([...picks, ...picks]);
 
       matchGrid.innerHTML = '';
-      deck.forEach((emoji, idx) => {
+      deck.forEach((emoji) => {
         const c = document.createElement('div');
         c.className = 'matchCard';
         c.setAttribute('data-emoji', emoji);
-        c.setAttribute('data-idx', String(idx));
         c.textContent = '❓';
         c.addEventListener('click', () => onFlip(c));
         matchGrid.appendChild(c);
       });
-      toast('¡Memorama listo! 🧠');
     }
 
     function onFlip(card){
@@ -673,7 +871,6 @@
       if(revealed.includes(card)) return;
       if(revealed.length >= 2) return;
 
-      card.classList.add('revealed');
       card.textContent = card.getAttribute('data-emoji');
       revealed.push(card);
 
@@ -689,6 +886,7 @@
           pairs += 1;
           $('#pairs').textContent = String(pairs);
           revealed = [];
+          playTone(520, 0.10); confettiEmojis();
           toast('¡Pareja! ⭐');
           if(pairs === 6){
             toast('¡Ganaste! 🎉');
@@ -696,11 +894,10 @@
           }
         }else{
           setTimeout(() => {
-            a.classList.remove('revealed');
-            b.classList.remove('revealed');
             a.textContent = '❓';
             b.textContent = '❓';
             revealed = [];
+            playTone(220, 0.08);
             toast('Otra vez 🙂');
           }, 650);
         }
@@ -709,21 +906,283 @@
 
     $('#btnNewMatch').addEventListener('click', newMatchGame);
 
-    // ---------------------- Fake social buttons ----------------------
-    $$('.socialIcon').forEach(el => {
-      el.addEventListener('click', () => {
-        const k = el.getAttribute('data-social');
-        const map = {
-          video: '¡Play! ▶️',
-          like: '¡Like! 👍',
-          cam: '¡Foto! 📸',
-          chat: '¡Chat! 💬',
-          bell: '¡Campanita! 🔔',
-          share: '¡Compartir! 📤'
-        };
-        toast(map[k] || '¡Click!');
+    // ---------------------- Game 2: Related pairs ----------------------
+    const pairSets = [
+      ['🐶','🦴'], ['🐱','🐟'], ['🚗','⛽'], ['🦷','🪥'], ['☀️','😎'], ['🌙','😴'],
+      ['🎈','💥'], ['🍎','🍽️'], ['📚','✏️'], ['⚽','🥅'], ['🧸','❤️'], ['🚀','🌟']
+    ];
+    const pairsGrid = $('#pairsGrid');
+    let pairRevealed = [];
+    let pairHits = 0;
+
+    function newPairsGame(){
+      pairRevealed = [];
+      pairHits = 0;
+      $('#pairHits').textContent = '0';
+
+      const picks = shuffle(pairSets).slice(0,6);
+      const flat = picks.flat();
+      const deck = shuffle(flat);
+
+      pairsGrid.innerHTML = '';
+      deck.forEach((emoji) => {
+        const c = document.createElement('div');
+        c.className = 'matchCard';
+        c.setAttribute('data-emoji', emoji);
+        c.textContent = '❓';
+        c.addEventListener('click', () => onPairsFlip(c, picks));
+        pairsGrid.appendChild(c);
       });
+    }
+
+    function isRelated(a, b, picks){
+      const ea = a.getAttribute('data-emoji');
+      const eb = b.getAttribute('data-emoji');
+      return picks.some(([x,y]) => (x===ea && y===eb) || (x===eb && y===ea));
+    }
+
+    function onPairsFlip(card, picks){
+      if(card.classList.contains('matched')) return;
+      if(pairRevealed.includes(card)) return;
+      if(pairRevealed.length >= 2) return;
+
+      card.textContent = card.getAttribute('data-emoji');
+      pairRevealed.push(card);
+
+      if(pairRevealed.length === 2){
+        const [a,b] = pairRevealed;
+        const ok = isRelated(a,b,picks);
+        if(ok){
+          a.classList.add('matched');
+          b.classList.add('matched');
+          pairHits += 1;
+          $('#pairHits').textContent = String(pairHits);
+          pairRevealed = [];
+          confettiEmojis(); playTone(520, 0.10);
+          toast('¡Van juntos! 🔗');
+          if(pairHits === 6){
+            toast('¡Completaste todo! 🎉');
+            speak('¡Muy bien!');
+          }
+        }else{
+          setTimeout(() => {
+            a.textContent = '❓';
+            b.textContent = '❓';
+            pairRevealed = [];
+            playTone(220, 0.08);
+            toast('Intenta otra vez 🙂');
+          }, 650);
+        }
+      }
+    }
+
+    $('#btnNewPairs').addEventListener('click', newPairsGame);
+
+    // ---------------------- Game 3: Numbers (number + quantity) ----------------------
+    const numTargetEl = $('#numTarget');
+    const numDotsEl = $('#numDots');
+    const numChoicesEl = $('#numChoices');
+    let currentNum = 5;
+
+    function newNumberGame(){
+      currentNum = 1 + Math.floor(Math.random()*10);
+      numTargetEl.textContent = String(currentNum);
+      numDotsEl.innerHTML = '';
+      for(let i=0;i<currentNum;i++){
+        const d = document.createElement('div');
+        d.className = 'dot';
+        d.textContent = '🧸';
+        numDotsEl.appendChild(d);
+      }
+
+      // choices: correct + 3 random
+      const choices = new Set([currentNum]);
+      while(choices.size < 4) choices.add(1 + Math.floor(Math.random()*10));
+      const list = shuffle(Array.from(choices));
+
+      numChoicesEl.innerHTML = '';
+      list.forEach(n => {
+        const b = document.createElement('div');
+        b.className = 'bigCard';
+        b.textContent = String(n);
+        b.style.cursor = 'pointer';
+        b.addEventListener('click', () => {
+          if(n === currentNum){
+            confettiEmojis(); playTone(620, 0.12);
+            toast('¡Correcto! 🔢');
+          }else{
+            playTone(220, 0.08);
+            toast('Casi 🙂');
+          }
+        });
+        numChoicesEl.appendChild(b);
+      });
+    }
+
+    $('#btnNewNumber').addEventListener('click', newNumberGame);
+    $('#btnSayNumber').addEventListener('click', () => speak(String(currentNum)));
+
+    // ---------------------- Game 4: Missing pattern ----------------------
+    const patterns = [
+      ['🍎','🍌','🍎','🍌'],
+      ['🚗','🚗','🚕','🚗'],
+      ['⭐','✨','⭐','✨'],
+      ['🐶','🐱','🐶','🐱'],
+      ['🟦','🟨','🟦','🟨'],
+    ];
+    const missingRow = $('#missingRow');
+    const missingOptions = $('#missingOptions');
+    let missingAnswer = null;
+    let streak = 0;
+
+    function newMissingGame(){
+      const base = shuffle(patterns)[0].slice();
+      const hole = 2; // consistent position for kids
+      missingAnswer = base[hole];
+      base[hole] = '❓';
+
+      missingRow.innerHTML = '';
+      base.forEach(x => {
+        const c = document.createElement('div');
+        c.className = 'bigCard';
+        c.textContent = x;
+        missingRow.appendChild(c);
+      });
+
+      const opts = new Set([missingAnswer]);
+      while(opts.size < 3){
+        const p = shuffle(patterns)[0];
+        opts.add(p[Math.floor(Math.random()*p.length)]);
+      }
+      const list = shuffle(Array.from(opts));
+
+      missingOptions.innerHTML = '';
+      list.forEach(x => {
+        const o = document.createElement('div');
+        o.className = 'bigCard';
+        o.textContent = x;
+        o.style.cursor = 'pointer';
+        o.addEventListener('click', () => {
+          if(x === missingAnswer){
+            streak += 1; $('#streak').textContent = String(streak);
+            confettiEmojis(); playTone(620, 0.12);
+            toast('¡Muy bien! ❓');
+            setTimeout(newMissingGame, 450);
+          }else{
+            streak = 0; $('#streak').textContent = '0';
+            playTone(220, 0.08);
+            toast('Intenta otra vez 🙂');
+          }
+        });
+        missingOptions.appendChild(o);
+      });
+    }
+
+    $('#btnNewMissing').addEventListener('click', newMissingGame);
+
+    // ---------------------- Game 5: Sequences ----------------------
+    const seqSets = [
+      ['🌱','🌿','🌳'],
+      ['🐣','🐥','🐔'],
+      ['🧊','💧','🌊'],
+      ['🚗','⛽','🏁'],
+      ['🛏️','🦷','🌙']
+    ];
+    const seqSlots = $('#seqSlots');
+    const seqChoices = $('#seqChoices');
+    let seqAnswer = [];
+    let seqState = [];
+
+    function newSeqGame(){
+      seqAnswer = shuffle(seqSets)[0].slice();
+      seqState = [null,null,null];
+
+      seqSlots.innerHTML = '';
+      for(let i=0;i<3;i++){
+        const s = document.createElement('div');
+        s.className = 'slot';
+        s.textContent = '❓';
+        s.setAttribute('data-i', String(i));
+        s.addEventListener('click', () => {
+          // clear slot if tapped
+          if(seqState[i] != null){
+            seqState[i] = null;
+            s.textContent = '❓';
+          }
+        });
+        seqSlots.appendChild(s);
+      }
+
+      const choices = shuffle(seqAnswer.slice());
+      seqChoices.innerHTML = '';
+      choices.forEach(ch => {
+        const c = document.createElement('div');
+        c.className = 'choice';
+        c.textContent = ch;
+        c.addEventListener('click', () => {
+          // place in first empty slot
+          const idx = seqState.findIndex(v => v == null);
+          if(idx === -1) return;
+          seqState[idx] = ch;
+          seqSlots.children[idx].textContent = ch;
+        });
+        seqChoices.appendChild(c);
+      });
+    }
+
+    $('#btnNewSeq').addEventListener('click', newSeqGame);
+    $('#btnCheckSeq').addEventListener('click', () => {
+      if(seqState.some(v => v == null)){
+        toast('Llena todos los espacios 🙂');
+        playTone(220, 0.08);
+        return;
+      }
+      const ok = seqState.every((v,i) => v === seqAnswer[i]);
+      if(ok){
+        confettiEmojis();
+        toast('¡Orden correcto! 🧩');
+        speak('¡Muy bien!');
+        playTone(720, 0.12);
+      }else{
+        toast('Casi… intenta otra vez 🙂');
+        playTone(220, 0.08);
+      }
     });
+
+    // ---------------------- Social (fun surprises) ----------------------
+    const socials = [
+      { name: 'YouTube', ico: '▶️', note: '¡Play y estrellas!' },
+      { name: 'TikTok',  ico: '🎵', note: '¡Bailito!' },
+      { name: 'WhatsApp', ico: '💬', note: '¡Mensaje secreto!' },
+      { name: 'Instagram', ico: '📸', note: '¡Foto mágica!' },
+      { name: 'Facebook', ico: '👍', note: '¡Like gigante!' },
+      { name: 'X', ico: '❌', note: '¡X sorpresa!' },
+    ];
+
+    function socialSurprise(name){
+      const roll = Math.floor(Math.random()*4);
+      if(roll === 0){ confettiEmojis(); }
+      if(roll === 1){ playTone(600, 0.12); playTone(900, 0.12); }
+      if(roll === 2){ playTone(220, 0.08); setTimeout(()=> playTone(520, 0.10), 90); }
+      if(roll === 3){ confettiEmojis(); playTone(720, 0.10); }
+      toast('¡' + name + '! 🌈');
+      speak(name);
+    }
+
+    const socialGrid = $('#socialGrid');
+    function renderSocials(){
+      socialGrid.innerHTML = '';
+      socials.forEach(s => {
+        const b = document.createElement('div');
+        b.className = 'socialBtn';
+        b.innerHTML = `
+          <div class="ico">${s.ico}</div>
+          <div class="txt"><b>${s.name}</b><span>${s.note}</span></div>
+        `;
+        b.addEventListener('click', () => socialSurprise(s.name));
+        socialGrid.appendChild(b);
+      });
+    }
 
     // ---------------------- Daily challenge ----------------------
     const challenges = [
@@ -750,9 +1209,29 @@
 
     // ---------------------- Init ----------------------
     window.addEventListener('load', () => {
+      // letras A–Z
+      const letterSelect = $('#letterSelect');
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach(l => {
+        const o = document.createElement('option');
+        o.value = l;
+        o.textContent = l;
+        letterSelect.appendChild(o);
+      });
+      letterSelect.value = 'A';
+
+      $('#caseSelect').addEventListener('change', drawLetter);
+      letterSelect.addEventListener('change', drawLetter);
+
       fitCanvas();
-      newMatchGame();
-      setNewWord();
+      renderSocials();
+      newRealWord();
+
+      // start in games menu
+      backToMenu();
+    });
+
+    window.addEventListener('resize', () => {
+      fitCanvas();
     });
   </script>
 </body>
