@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mi Mundo de Juegos 🎈</title>
+  <style>
+    :root{
+      --bg:#f0f9ff;            /* azul cielo */
+      --card:#ffffff;
+      --ink:#0f172a;           /* azul marino */
+      --muted:#475569;         /* gris azulado */
+      --b:#dbeafe;             /* azul claro */
+      --shadow: 0 10px 30px rgba(2,6,23,.12);
+      --radius: 22px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 10% 10%, #ffe7f3, transparent 45%),
+        radial-gradient(circle at 90% 20%, #e7f3ff, transparent 40%),
+        radial-gradient(circle at 50% 90%, #e8fff1, transparent 45%),
+        var(--bg);
+      min-height:100vh;
+    }
+    header{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(255,247,251,.75);
+      border-bottom: 1px solid rgba(229,231,235,.7);
+    }
+    .wrap{max-width:1100px; margin:0 auto; padding:14px 16px;}
+    .topbar{display:flex; align-items:center; gap:12px; justify-content:space-between; flex-wrap:wrap;}
+    .brand{display:flex; align-items:center; gap:10px;}
+    .logo{
+      width:44px; height:44px; border-radius:14px;
+      background: conic-gradient(from 200deg, #38bdf8, #22c55e, #facc15, #38bdf8);
+      box-shadow: var(--shadow);
+      position:relative;
+    }
+    .logo:after{
+      content:"🚀"; /* cohete */
+      position:absolute; inset:0;
+      display:grid; place-items:center;
+      font-size:22px; color:#ffffff; text-shadow:0 3px 10px rgba(0,0,0,.25);
+    }
+    h1{margin:0; font-size:18px; line-height:1.1}
+    .subtitle{margin:0; color:var(--muted); font-size:12px}
+    nav{display:flex; gap:8px; flex-wrap:wrap;}
+    .pill{
+      border:1px solid rgba(229,231,235,.9);
+      background: rgba(255,255,255,.75);
+      padding:8px 10px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:12px;
+      cursor:pointer;
+      user-select:none;
+      transition: transform .08s ease, box-shadow .12s ease;
+    }
+    .pill:active{transform: translateY(1px) scale(.99)}
+    .pill:hover{box-shadow: 0 6px 18px rgba(31,41,55,.10)}
+
+    main{max-width:1100px; margin:0 auto; padding:18px 16px 60px;}
+    .grid{display:grid; grid-template-columns: 1.2fr .8fr; gap:14px;}
+    @media (max-width: 920px){.grid{grid-template-columns:1fr;}}
+
+    .card{
+      background: rgba(255,255,255,.86);
+      border:1px solid rgba(229,231,235,.9);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:16px;
+    }
+    .card h2{margin:0 0 10px; font-size:16px}
+    .card p{margin:6px 0; color:var(--muted)}
+
+    .hero{
+      display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+    }
+    .heroLeft{display:flex; gap:12px; align-items:center;}
+    .bigEmoji{font-size:44px; filter: drop-shadow(0 10px 18px rgba(0,0,0,.08));}
+    .actions{display:flex; gap:10px; flex-wrap:wrap;}
+    button{
+      border:1px solid rgba(229,231,235,.9);
+      background:#fff;
+      padding:10px 12px;
+      border-radius: 14px;
+      font-weight:800;
+      cursor:pointer;
+      box-shadow: 0 6px 16px rgba(31,41,55,.08);
+      transition: transform .08s ease;
+    }
+    button:active{transform: translateY(1px) scale(.99)}
+    .btnPrimary{
+      background: linear-gradient(135deg, #38bdf8, #22c55e);
+      color:#fff; border-color:transparent;
+    }
+
+    /* Gallery */
+    .galleryTop{display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;}
+    .gallery{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+    }
+    @media (max-width: 560px){.gallery{grid-template-columns: repeat(2, 1fr);}}
+    .tile{
+      border:1px solid rgba(229,231,235,.9);
+      background: rgba(255,255,255,.9);
+      border-radius: 18px;
+      overflow:hidden;
+      min-height:110px;
+      display:grid; place-items:center;
+      position:relative;
+    }
+    .tile img{width:100%; height:100%; object-fit:cover; display:block;}
+    .tile .placeholder{font-size:44px;}
+    .tile .label{
+      position:absolute; left:10px; bottom:10px;
+      background: rgba(255,255,255,.85);
+      border:1px solid rgba(229,231,235,.9);
+      padding:6px 8px;
+      border-radius: 999px;
+      font-weight:800;
+      font-size:12px;
+    }
+
+    /* Social */
+    .socialRow{display:flex; gap:10px; flex-wrap:wrap;}
+    .socialIcon{
+      width:44px; height:44px;
+      border-radius: 16px;
+      display:grid; place-items:center;
+      border:1px solid rgba(229,231,235,.9);
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 6px 16px rgba(31,41,55,.08);
+      cursor:pointer;
+      user-select:none;
+      font-size:20px;
+    }
+
+    /* Syllables */
+    .syllWrap{display:grid; gap:12px;}
+    .syllBox{
+      display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+      border:1px dashed rgba(107,114,128,.35);
+      border-radius: 18px;
+      padding:12px;
+      background: rgba(255,255,255,.7);
+    }
+    .syllBig{font-size:42px; font-weight:900; letter-spacing:1px;}
+    .syllControls{display:flex; gap:10px; flex-wrap:wrap;}
+    .tag{font-size:12px; font-weight:800; padding:6px 10px; border-radius:999px; border:1px solid rgba(229,231,235,.9); background:#fff;}
+
+    /* Tracing */
+    .traceTop{display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;}
+    canvas{
+      width:100%;
+      height:260px;
+      background: rgba(255,255,255,.9);
+      border:1px solid rgba(229,231,235,.9);
+      border-radius: 18px;
+      touch-action:none;
+    }
+
+    /* Matching game */
+    .matchGrid{display:grid; grid-template-columns: repeat(4, 1fr); gap:10px; margin-top:10px;}
+    @media (max-width: 560px){.matchGrid{grid-template-columns: repeat(3, 1fr);}}
+    .matchCard{
+      border:1px solid rgba(229,231,235,.9);
+      background: rgba(255,255,255,.92);
+      border-radius: 18px;
+      min-height:74px;
+      display:grid; place-items:center;
+      font-size:28px;
+      cursor:pointer;
+      user-select:none;
+      position:relative;
+      transition: transform .08s ease, box-shadow .12s ease;
+    }
+    .matchCard:active{transform: translateY(1px) scale(.99)}
+    .matchCard.revealed{box-shadow: 0 10px 22px rgba(31,41,55,.12)}
+    .matchCard.matched{opacity:.6}
+
+    .footerNote{color:var(--muted); font-size:12px; margin-top:10px}
+    .toast{
+      position: fixed; left:50%; bottom:16px; transform: translateX(-50%);
+      background: rgba(17,24,39,.92); color:#fff;
+      padding:10px 12px; border-radius: 999px;
+      font-weight:800; font-size:12px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.18);
+      display:none;
+      z-index:20;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Mi Mundo de Juegos 🎈</h1>
+          <p class="subtitle">Para aprender y divertirse (5 años)</p>
+        </div>
+      </div>
+      <nav>
+        <div class="pill" data-scroll="#galeria">🧸 Peluches</div>
+        <div class="pill" data-scroll="#silabas">🔤 Sílabas</div>
+        <div class="pill" data-scroll="#trazo">✍️ Trazos</div>
+        <div class="pill" data-scroll="#memorama">🧠 Memorama</div>
+        <div class="pill" data-scroll="#redes">🌈 Redes</div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="card" id="inicio">
+      <div class="hero">
+        <div class="heroLeft">
+          <div class="bigEmoji" aria-hidden="true">🦄</div>
+          <div>
+            <h2>¡Hola! 👋</h2>
+            <p>Elige una sección arriba. Aquí hay mini-juegos rápidos, sin internet y sin anuncios.</p>
+            <p class="footerNote">Tip para papá/mamá: esta página funciona mejor en pantalla completa. ✅</p>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btnPrimary" id="btnConfetti">🎉 ¡Fiesta!</button>
+          <button id="btnSound">🔊 Sonidito</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid" style="margin-top:14px;">
+
+      <!-- Left column -->
+      <div class="stack" style="display:grid; gap:14px;">
+
+        <section class="card" id="galeria">
+          <div class="galleryTop">
+            <div>
+              <h2>Galería de Peluches 🧸</h2>
+              <p>Puedes subir fotos desde tu compu/cel. (Se quedan solo en tu navegador.)</p>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+              <label class="tag" for="fileInput" style="cursor:pointer;">📷 Agregar fotos</label>
+              <input id="fileInput" type="file" accept="image/*" multiple style="display:none" />
+              <button id="btnClearGallery" title="Borra fotos cargadas">🧹 Limpiar</button>
+            </div>
+          </div>
+
+          <div class="gallery" id="gallery">
+            <div class="tile" data-default="1"><div class="placeholder">🧸</div><div class="label">Oso</div></div>
+            <div class="tile" data-default="1"><div class="placeholder">🐰</div><div class="label">Conejo</div></div>
+            <div class="tile" data-default="1"><div class="placeholder">🦖</div><div class="label">Dino</div></div>
+            <div class="tile" data-default="1"><div class="placeholder">🐻‍❄️</div><div class="label">Polar</div></div>
+            <div class="tile" data-default="1"><div class="placeholder">🐙</div><div class="label">Pulpo</div></div>
+            <div class="tile" data-default="1"><div class="placeholder">🦊</div><div class="label">Zorro</div></div>
+          </div>
+        </section>
+
+        <section class="card" id="silabas">
+          <h2>Juego de Sílabas 🔤</h2>
+          <p>Aprendemos a leer: elige una sílaba y elige una vocal.</p>
+
+          <div class="syllWrap">
+            <div class="syllBox">
+              <div>
+                <div class="tag">Sílaba</div>
+                <div class="syllBig" id="syllable">MA</div>
+              </div>
+              <div class="syllControls">
+                <button id="btnNewSyll">🎲 Cambiar</button>
+                <button id="btnSpeakSyll">🗣️ Decir</button>
+              </div>
+            </div>
+
+            <div class="syllBox">
+              <div>
+                <div class="tag">Arma una palabra</div>
+                <div class="syllBig" id="word">MA + MA</div>
+              </div>
+              <div class="syllControls">
+                <button id="btnMakeWord">✨ Nueva</button>
+                <button id="btnSpeakWord">🗣️ Decir</button>
+              </div>
+            </div>
+
+            <p class="footerNote">Idea: pídele que encuentre cosas en casa que empiecen con esa sílaba. 🏠</p>
+          </div>
+        </section>
+
+        <section class="card" id="trazo">
+          <div class="traceTop">
+            <div>
+              <h2>Escritura y Trazos ✍️</h2>
+              <p>Dibuja encima de la letra grande. También sirve para garabatear libre.</p>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+              <select id="letterSelect" class="tag" style="padding:8px 10px;">
+                <option value="A">A</option>
+                <option value="E">E</option>
+                <option value="I">I</option>
+                <option value="O">O</option>
+                <option value="U">U</option>
+                <option value="M" selected>M</option>
+                <option value="P">P</option>
+                <option value="S">S</option>
+              </select>
+              <button id="btnTraceReset">🧽 Borrar</button>
+            </div>
+          </div>
+
+          <canvas id="traceCanvas" width="1000" height="520" aria-label="Zona de trazo"></canvas>
+          <p class="footerNote">Consejo: usa el dedo en tablet o mouse en PC. 📱🖱️</p>
+        </section>
+
+      </div>
+
+      <!-- Right column -->
+      <div class="stack" style="display:grid; gap:14px;">
+
+        <section class="card" id="memorama">
+          <h2>Memorama 🧠</h2>
+          <p>Encuentra las parejas. (Toca 2 cartas.)</p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+            <button id="btnNewMatch" class="btnPrimary">🔄 Nuevo juego</button>
+            <div class="tag">Intentos: <span id="tries">0</span></div>
+            <div class="tag">Parejas: <span id="pairs">0</span>/6</div>
+          </div>
+          <div class="matchGrid" id="matchGrid" aria-label="Cartas de memorama"></div>
+          <p class="footerNote">Tip: primero juega con 4 parejas para hacerlo más fácil.</p>
+        </section>
+
+        <section class="card" id="redes">
+          <h2>Botones de “Redes” 🌈</h2>
+          <p>No hacen nada (solo para “jugar a los videos”).</p>
+          <div class="socialRow">
+            <div class="socialIcon" data-social="video">▶️</div>
+            <div class="socialIcon" data-social="like">👍</div>
+            <div class="socialIcon" data-social="cam">📸</div>
+            <div class="socialIcon" data-social="chat">💬</div>
+            <div class="socialIcon" data-social="bell">🔔</div>
+            <div class="socialIcon" data-social="share">📤</div>
+          </div>
+          <p class="footerNote">Puedes usar esto para enseñar: “no todo lo que vemos hace cosas”. ✅</p>
+        </section>
+
+        <section class="card">
+          <h2>Mini-Reto del Día ⭐</h2>
+          <p id="dailyChallenge">Encuentra 3 cosas rojas en casa. ❤️</p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+            <button id="btnNewChallenge">🎲 Otro reto</button>
+            <button id="btnReadChallenge">🗣️ Leer</button>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+
+    <p class="footerNote" style="margin-top:14px;">
+      Privacidad: no subas fotos sensibles; esta página no envía nada a internet, pero si compartes tu pantalla alguien podría verlas.
+    </p>
+  </main>
+
+  <div class="toast" id="toast">¡Hola!</div>
+
+  <script>
+    // ---------------------- Helpers ----------------------
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+    const toastEl = $('#toast');
+    let toastTimer = null;
+    function toast(msg){
+      toastEl.textContent = msg;
+      toastEl.style.display = 'block';
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(()=> toastEl.style.display='none', 1400);
+    }
+
+    function speak(text){
+      try{
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = 'es-MX';
+        u.rate = 0.95;
+        speechSynthesis.cancel();
+        speechSynthesis.speak(u);
+      }catch{ /* noop */ }
+    }
+
+    // ---------------------- Navigation ----------------------
+    $$('.pill').forEach(p => {
+      p.addEventListener('click', () => {
+        const id = p.getAttribute('data-scroll');
+        const el = document.querySelector(id);
+        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+
+    // ---------------------- Confetti (simple) ----------------------
+    $('#btnConfetti').addEventListener('click', () => {
+      // lightweight confetti using emojis
+      const count = 26;
+      for(let i=0;i<count;i++){
+        const s = document.createElement('span');
+        s.textContent = ['🎉','✨','🎈','⭐','🫧'][Math.floor(Math.random()*5)];
+        s.style.position='fixed';
+        s.style.left = Math.random()*100 + 'vw';
+        s.style.top = (-10 - Math.random()*20) + 'px';
+        s.style.fontSize = (18 + Math.random()*18) + 'px';
+        s.style.zIndex=30;
+        s.style.filter='drop-shadow(0 8px 10px rgba(0,0,0,.12))';
+        document.body.appendChild(s);
+        const fall = 100 + Math.random()*50;
+        const drift = (Math.random()*2-1) * 25;
+        s.animate([
+          { transform:`translate(0,0) rotate(0deg)`, opacity:1 },
+          { transform:`translate(${drift}vw, ${fall}vh) rotate(${360+Math.random()*360}deg)`, opacity:0.1 }
+        ], { duration: 1400 + Math.random()*800, easing:'cubic-bezier(.2,.8,.2,1)' });
+        setTimeout(()=> s.remove(), 2400);
+      }
+      toast('¡Fiesta! 🎉');
+    });
+
+    // ---------------------- Sound button ----------------------
+    let audioCtx = null;
+    $('#btnSound').addEventListener('click', () => {
+      try{
+        audioCtx ??= new (window.AudioContext || window.webkitAudioContext)();
+        const o = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        o.type = 'triangle';
+        o.frequency.value = 440 + Math.random()*220;
+        g.gain.value = 0.0001;
+        o.connect(g).connect(audioCtx.destination);
+        o.start();
+        g.gain.exponentialRampToValueAtTime(0.18, audioCtx.currentTime + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.25);
+        o.stop(audioCtx.currentTime + 0.26);
+        toast('¡Bip! 🔊');
+      }catch{
+        toast('Tu navegador no permite sonido 😅');
+      }
+    });
+
+    // ---------------------- Gallery upload ----------------------
+    const fileInput = $('#fileInput');
+    const gallery = $('#gallery');
+
+    fileInput.addEventListener('change', async (e) => {
+      const files = Array.from(e.target.files || []);
+      if(!files.length) return;
+
+      // remove default tiles first time
+      $$('.tile[data-default="1"]', gallery).forEach(t => t.remove());
+
+      for(const f of files){
+        if(!f.type.startsWith('image/')) continue;
+        const url = await readFileAsDataURL(f);
+        const tile = document.createElement('div');
+        tile.className = 'tile';
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = 'Foto de peluche';
+        const lbl = document.createElement('div');
+        lbl.className = 'label';
+        lbl.textContent = '🧸';
+        tile.appendChild(img);
+        tile.appendChild(lbl);
+        gallery.prepend(tile);
+      }
+      toast('¡Fotos agregadas! 📷');
+      fileInput.value = '';
+    });
+
+    $('#btnClearGallery').addEventListener('click', () => {
+      // clear and restore defaults
+      gallery.innerHTML = `
+        <div class="tile" data-default="1"><div class="placeholder">🧸</div><div class="label">Oso</div></div>
+        <div class="tile" data-default="1"><div class="placeholder">🐰</div><div class="label">Conejo</div></div>
+        <div class="tile" data-default="1"><div class="placeholder">🦖</div><div class="label">Dino</div></div>
+        <div class="tile" data-default="1"><div class="placeholder">🐻‍❄️</div><div class="label">Polar</div></div>
+        <div class="tile" data-default="1"><div class="placeholder">🐙</div><div class="label">Pulpo</div></div>
+        <div class="tile" data-default="1"><div class="placeholder">🦊</div><div class="label">Zorro</div></div>
+      `;
+      toast('Galería limpia 🧹');
+    });
+
+    function readFileAsDataURL(file){
+      return new Promise((resolve, reject) => {
+        const r = new FileReader();
+        r.onload = () => resolve(String(r.result));
+        r.onerror = reject;
+        r.readAsDataURL(file);
+      });
+    }
+
+    // ---------------------- Syllable game ----------------------
+    const bases = ['M','P','S','L','T','N','C','B','D','F','G','R'];
+    const vowels = ['A','E','I','O','U'];
+
+    function randomSyll(){
+      const b = bases[Math.floor(Math.random()*bases.length)];
+      const v = vowels[Math.floor(Math.random()*vowels.length)];
+      return (b+v);
+    }
+
+    const syllEl = $('#syllable');
+    const wordEl = $('#word');
+
+    function setNewSyll(){
+      const s = randomSyll();
+      syllEl.textContent = s;
+      toast('Nueva sílaba: ' + s);
+    }
+
+    function setNewWord(){
+      const s1 = randomSyll();
+      const s2 = randomSyll();
+      wordEl.textContent = `${s1} + ${s2}`;
+      toast('¡Nueva combinación! ✨');
+    }
+
+    $('#btnNewSyll').addEventListener('click', setNewSyll);
+    $('#btnSpeakSyll').addEventListener('click', () => speak(syllEl.textContent));
+    $('#btnMakeWord').addEventListener('click', setNewWord);
+    $('#btnSpeakWord').addEventListener('click', () => speak(wordEl.textContent.replace('+','')));
+
+    // ---------------------- Tracing canvas ----------------------
+    const canvas = $('#traceCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function fitCanvas(){
+      // keep internal resolution crisp
+      const rect = canvas.getBoundingClientRect();
+      const dpr = Math.max(1, window.devicePixelRatio || 1);
+      canvas.width  = Math.floor(rect.width * dpr);
+      canvas.height = Math.floor(rect.height * dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      drawLetter();
+    }
+
+    function drawLetter(){
+      const rect = canvas.getBoundingClientRect();
+      ctx.clearRect(0,0,rect.width,rect.height);
+
+      // background guide lines
+      ctx.save();
+      ctx.globalAlpha = 0.25;
+      ctx.lineWidth = 2;
+      ctx.setLineDash([10,10]);
+      ctx.beginPath();
+      ctx.moveTo(16, rect.height*0.25);
+      ctx.lineTo(rect.width-16, rect.height*0.25);
+      ctx.moveTo(16, rect.height*0.75);
+      ctx.lineTo(rect.width-16, rect.height*0.75);
+      ctx.strokeStyle = '#6b7280';
+      ctx.stroke();
+      ctx.restore();
+
+      // big letter
+      const letter = $('#letterSelect').value;
+      ctx.save();
+      ctx.font = `900 ${Math.floor(rect.height*0.62)}px system-ui, -apple-system, Segoe UI, Roboto, Arial`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.globalAlpha = 0.22;
+      ctx.fillStyle = '#111827';
+      ctx.fillText(letter, rect.width/2, rect.height/2 + 6);
+      ctx.restore();
+
+      // drawing style
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.strokeStyle = '#111827';
+      ctx.lineWidth = 8;
+    }
+
+    let drawing = false;
+    let last = null;
+
+    function pointFromEvent(e){
+      const rect = canvas.getBoundingClientRect();
+      const p = e.touches ? e.touches[0] : e;
+      return { x: p.clientX - rect.left, y: p.clientY - rect.top };
+    }
+
+    function startDraw(e){
+      drawing = true;
+      last = pointFromEvent(e);
+      e.preventDefault?.();
+    }
+
+    function moveDraw(e){
+      if(!drawing) return;
+      const p = pointFromEvent(e);
+      ctx.beginPath();
+      ctx.moveTo(last.x, last.y);
+      ctx.lineTo(p.x, p.y);
+      ctx.stroke();
+      last = p;
+      e.preventDefault?.();
+    }
+
+    function endDraw(){
+      drawing = false;
+      last = null;
+    }
+
+    canvas.addEventListener('mousedown', startDraw);
+    window.addEventListener('mousemove', moveDraw);
+    window.addEventListener('mouseup', endDraw);
+
+    canvas.addEventListener('touchstart', startDraw, {passive:false});
+    canvas.addEventListener('touchmove', moveDraw, {passive:false});
+    canvas.addEventListener('touchend', endDraw);
+
+    $('#btnTraceReset').addEventListener('click', () => { drawLetter(); toast('¡Listo! 🧽'); });
+    $('#letterSelect').addEventListener('change', () => { drawLetter(); toast('Letra: ' + $('#letterSelect').value); });
+
+    window.addEventListener('resize', () => {
+      // refit but keep it lightweight
+      fitCanvas();
+    });
+
+    // ---------------------- Matching game ----------------------
+    const allEmojis = ['🐶','🐱','🦊','🐻','🐼','🐸','🐵','🦁','🐷','🐰','🐯','🦄'];
+    const matchGrid = $('#matchGrid');
+    let revealed = [];
+    let tries = 0;
+    let pairs = 0;
+
+    function shuffle(arr){
+      const a = arr.slice();
+      for(let i=a.length-1;i>0;i--){
+        const j = Math.floor(Math.random()*(i+1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function newMatchGame(){
+      tries = 0; pairs = 0; revealed = [];
+      $('#tries').textContent = '0';
+      $('#pairs').textContent = '0';
+
+      const picks = shuffle(allEmojis).slice(0,6);
+      const deck = shuffle([...picks, ...picks]);
+
+      matchGrid.innerHTML = '';
+      deck.forEach((emoji, idx) => {
+        const c = document.createElement('div');
+        c.className = 'matchCard';
+        c.setAttribute('data-emoji', emoji);
+        c.setAttribute('data-idx', String(idx));
+        c.textContent = '❓';
+        c.addEventListener('click', () => onFlip(c));
+        matchGrid.appendChild(c);
+      });
+      toast('¡Memorama listo! 🧠');
+    }
+
+    function onFlip(card){
+      if(card.classList.contains('matched')) return;
+      if(revealed.includes(card)) return;
+      if(revealed.length >= 2) return;
+
+      card.classList.add('revealed');
+      card.textContent = card.getAttribute('data-emoji');
+      revealed.push(card);
+
+      if(revealed.length === 2){
+        tries += 1;
+        $('#tries').textContent = String(tries);
+
+        const [a,b] = revealed;
+        const same = a.getAttribute('data-emoji') === b.getAttribute('data-emoji');
+        if(same){
+          a.classList.add('matched');
+          b.classList.add('matched');
+          pairs += 1;
+          $('#pairs').textContent = String(pairs);
+          revealed = [];
+          toast('¡Pareja! ⭐');
+          if(pairs === 6){
+            toast('¡Ganaste! 🎉');
+            speak('¡Ganaste!');
+          }
+        }else{
+          setTimeout(() => {
+            a.classList.remove('revealed');
+            b.classList.remove('revealed');
+            a.textContent = '❓';
+            b.textContent = '❓';
+            revealed = [];
+            toast('Otra vez 🙂');
+          }, 650);
+        }
+      }
+    }
+
+    $('#btnNewMatch').addEventListener('click', newMatchGame);
+
+    // ---------------------- Fake social buttons ----------------------
+    $$('.socialIcon').forEach(el => {
+      el.addEventListener('click', () => {
+        const k = el.getAttribute('data-social');
+        const map = {
+          video: '¡Play! ▶️',
+          like: '¡Like! 👍',
+          cam: '¡Foto! 📸',
+          chat: '¡Chat! 💬',
+          bell: '¡Campanita! 🔔',
+          share: '¡Compartir! 📤'
+        };
+        toast(map[k] || '¡Click!');
+      });
+    });
+
+    // ---------------------- Daily challenge ----------------------
+    const challenges = [
+      'Encuentra 3 cosas rojas en casa. ❤️',
+      'Salta 10 veces como un conejito. 🐰',
+      'Dime 5 animales que vuelen. 🐦',
+      'Busca una cosa que empiece con “M”. 🔤',
+      'Haz una carita feliz en el trazo. 🙂',
+      'Cuenta 12 juguetes y aplaude al final. 👏',
+      'Encuentra una cosa suave y una cosa dura. 🧸🪨',
+      'Imita un león por 5 segundos. 🦁',
+      'Ordena 3 peluches por tamaño. 📏',
+      'Di tu nombre y luego deletrea la primera letra. ⭐'
+    ];
+
+    function newChallenge(){
+      const msg = challenges[Math.floor(Math.random()*challenges.length)];
+      $('#dailyChallenge').textContent = msg;
+      toast('Nuevo reto ⭐');
+    }
+
+    $('#btnNewChallenge').addEventListener('click', newChallenge);
+    $('#btnReadChallenge').addEventListener('click', () => speak($('#dailyChallenge').textContent));
+
+    // ---------------------- Init ----------------------
+    window.addEventListener('load', () => {
+      fitCanvas();
+      newMatchGame();
+      setNewWord();
+    });
+  </script>
+</body>
+</html>
