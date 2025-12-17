@@ -1072,6 +1072,49 @@
     colorCanvas.addEventListener('pointerup', cPointerUp);
     colorCanvas.addEventListener('pointercancel', cPointerUp);
 
+    // ---------- FALLBACK mouse / touch (para que sí pinte) ----------
+function cStartMouse(e){
+  toast('🎨 pintando');
+  coloring = true;
+  clast = pointFromEvent(e, colorCanvas);
+  e.preventDefault?.();
+}
+
+function cMoveMouse(e){
+  if(!coloring) return;
+  const p = pointFromEvent(e, colorCanvas);
+
+  cctx.save();
+  cctx.strokeStyle = paintColor;
+  cctx.lineWidth = paintSize;
+  cctx.lineCap = 'round';
+  cctx.lineJoin = 'round';
+  cctx.beginPath();
+  cctx.moveTo(clast.x, clast.y);
+  cctx.lineTo(p.x, p.y);
+  cctx.stroke();
+  cctx.restore();
+
+  clast = p;
+  e.preventDefault?.();
+}
+
+function cEndMouse(){
+  coloring = false;
+  clast = null;
+}
+
+// Mouse
+colorCanvas.addEventListener('mousedown', cStartMouse);
+window.addEventListener('mousemove', cMoveMouse);
+window.addEventListener('mouseup', cEndMouse);
+
+// Touch
+colorCanvas.addEventListener('touchstart', cStartMouse, { passive:false });
+colorCanvas.addEventListener('touchmove', cMoveMouse, { passive:false });
+colorCanvas.addEventListener('touchend', cEndMouse);
+
+    
     $$('[data-color]').forEach(btn => {
       btn.addEventListener('click', () => {
         paintColor = btn.getAttribute('data-color');
