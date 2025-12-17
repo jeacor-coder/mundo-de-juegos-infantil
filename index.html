@@ -258,6 +258,8 @@
         <div class="pill" data-scroll="#juegos">🎮 Juegos</div>
         <div class="pill" data-scroll="#lectura">📘 Lectura</div>
         <div class="pill" data-scroll="#trazo">✍️ Trazos</div>
+        <div class="pill" data-scroll="#colorear">🎨 Colorear</div>
+        <div class="pill" data-scroll="#escribir">📝 Escribir</div>
         <div class="pill" data-scroll="#efectos">🎶 Efectos</div>
         <div class="pill" data-scroll="#galeria">🧸 Peluches</div>
         <div class="pill" data-scroll="#redes">🌈 Redes</div>
@@ -456,6 +458,55 @@
           </div>
           <canvas id="traceCanvas" aria-label="Zona de trazo"></canvas>
           <p class="footerNote">Consejo: dedo en tablet o mouse en PC. 📱🖱️</p>
+        </section>
+
+        <section class="card" id="colorear">
+          <div class="traceTop">
+            <div>
+              <h2>Colorear 🎨</h2>
+              <p>Elige un dibujo y pinta encima (preestablecidos).</p>
+            </div>
+            <div class="actions">
+              <select id="colorTemplate" class="tag" style="padding:8px 10px;">
+                <option value="dino" selected>🦖 Dino</option>
+                <option value="car">🚗 Carro</option>
+                <option value="rocket">🚀 Cohete</option>
+                <option value="star">⭐ Estrella</option>
+              </select>
+              <button id="btnColorReset">🧽 Limpiar</button>
+            </div>
+          </div>
+          <div class="actions" style="margin-top:10px;">
+            <span class="tag">Color:</span>
+            <button class="btnGhost" data-color="#ef4444">🔴</button>
+            <button class="btnGhost" data-color="#3b82f6">🔵</button>
+            <button class="btnGhost" data-color="#22c55e">🟢</button>
+            <button class="btnGhost" data-color="#facc15">🟡</button>
+            <button class="btnGhost" data-color="#a855f7">🟣</button>
+            <button class="btnGhost" data-color="#111827">⚫</button>
+            <button class="btnGhost" data-color="#ffffff">⚪</button>
+            <span class="tag">Grosor:</span>
+            <select id="brushSize" class="tag" style="padding:8px 10px;">
+              <option value="6">6</option>
+              <option value="10" selected>10</option>
+              <option value="16">16</option>
+              <option value="22">22</option>
+            </select>
+          </div>
+          <canvas id="colorCanvas" aria-label="Zona de colorear" style="margin-top:10px;"></canvas>
+          <p class="footerNote">Tip: pinta encima del dibujo. Usa “Limpiar” para empezar de nuevo.</p>
+        </section>
+
+        <section class="card" id="escribir">
+          <h2>Escribir y escuchar 📝🔊</h2>
+          <p>Escribe una frase y presiona “Leer”.</p>
+          <textarea id="textToRead" rows="4" placeholder="Escribe aquí…" style="width:100%; padding:12px; border-radius:18px; border:1px solid rgba(219,234,254,.95); font-size:18px; font-weight:800; outline:none;"></textarea>
+          <div class="actions" style="margin-top:10px;">
+            <button id="btnReadText" class="btnPrimary">🗣️ Leer</button>
+            <button id="btnClearText">🧹 Borrar</button>
+            <button id="btnSticker">✨ Sorpresa</button>
+          </div>
+          <p class="footerNote">Ejemplos: “Hola mamá”, “Me gustan los dinos”, “Hoy jugué”.</p>
         </section>
 
       </div>
@@ -720,6 +771,9 @@
       canvas.height = Math.floor(rect.height * dpr);
       ctx.setTransform(dpr,0,0,dpr,0,0);
       drawLetter();
+
+      // también ajusta el canvas de colorear
+      fitColorCanvas();
     }
 
     function drawLetter(){
@@ -789,6 +843,217 @@
     canvas.addEventListener('touchend', endDraw);
 
     $('#btnTraceReset').addEventListener('click', () => { drawLetter(); toast('¡Listo! 🧽'); });
+
+    // ---------------------- Coloring canvas ----------------------
+    const colorCanvas = $('#colorCanvas');
+    const cctx = colorCanvas.getContext('2d');
+    let paintColor = '#3b82f6';
+    let paintSize = 10;
+    let coloring = false;
+    let clast = null;
+
+    function fitColorCanvas(){
+      if(!colorCanvas) return;
+      const rect = colorCanvas.getBoundingClientRect();
+      const dpr = Math.max(1, window.devicePixelRatio || 1);
+      colorCanvas.width  = Math.floor(rect.width * dpr);
+      colorCanvas.height = Math.floor(rect.height * dpr);
+      cctx.setTransform(dpr,0,0,dpr,0,0);
+      drawTemplate($('#colorTemplate')?.value || 'dino');
+    }
+
+    function drawTemplate(key){
+      const rect = colorCanvas.getBoundingClientRect();
+      const W = rect.width, H = rect.height;
+      const cx = W/2, cy = H/2;
+
+      cctx.clearRect(0,0,W,H);
+      cctx.fillStyle = 'rgba(255,255,255,.92)';
+      cctx.fillRect(0,0,W,H);
+
+      cctx.save();
+      cctx.strokeStyle = '#0f172a';
+      cctx.lineWidth = 5;
+      cctx.lineJoin = 'round';
+      cctx.lineCap = 'round';
+
+      if(key === 'dino'){
+        cctx.beginPath();
+        cctx.ellipse(cx-30, cy+20, 120, 80, 0, 0, Math.PI*2);
+        cctx.stroke();
+
+        cctx.beginPath();
+        cctx.ellipse(cx+70, cy-10, 60, 45, 0, 0, Math.PI*2);
+        cctx.stroke();
+
+        cctx.beginPath();
+        cctx.roundRect(cx-120, cy+70, 50, 70, 18);
+        cctx.roundRect(cx-40,  cy+70, 50, 70, 18);
+        cctx.stroke();
+
+        cctx.beginPath();
+        cctx.moveTo(cx-140, cy+20);
+        cctx.quadraticCurveTo(cx-220, cy-10, cx-240, cy-60);
+        cctx.stroke();
+
+        const spikes = [[cx-40, cy-70],[cx-10, cy-85],[cx+20, cy-75],[cx+50, cy-55],[cx+80, cy-40]];
+        spikes.forEach(([x,y]) => {
+          cctx.beginPath();
+          cctx.moveTo(x, y);
+          cctx.lineTo(x+18, y+34);
+          cctx.lineTo(x-18, y+34);
+          cctx.closePath();
+          cctx.stroke();
+        });
+
+        cctx.beginPath();
+        cctx.arc(cx+90, cy-18, 8, 0, Math.PI*2);
+        cctx.stroke();
+      }
+      else if(key === 'car'){
+        cctx.beginPath();
+        cctx.roundRect(cx-170, cy+10, 340, 100, 30);
+        cctx.stroke();
+
+        cctx.beginPath();
+        cctx.roundRect(cx-110, cy-60, 220, 80, 26);
+        cctx.stroke();
+
+        cctx.beginPath();
+        cctx.roundRect(cx-80, cy-45, 90, 55, 18);
+        cctx.roundRect(cx+10, cy-45, 90, 55, 18);
+        cctx.stroke();
+
+        [cx-110, cx+110].forEach(wx => {
+          cctx.beginPath();
+          cctx.arc(wx, cy+110, 32, 0, Math.PI*2);
+          cctx.stroke();
+          cctx.beginPath();
+          cctx.arc(wx, cy+110, 10, 0, Math.PI*2);
+          cctx.stroke();
+        });
+      }
+      else if(key === 'rocket'){
+        cctx.beginPath();
+        cctx.roundRect(cx-60, cy-90, 120, 220, 60);
+        cctx.stroke();
+
+        cctx.beginPath();
+        cctx.moveTo(cx-60, cy-90);
+        cctx.quadraticCurveTo(cx, cy-170, cx+60, cy-90);
+        cctx.stroke();
+
+        cctx.beginPath();
+        cctx.moveTo(cx-60, cy+80);
+        cctx.lineTo(cx-120, cy+130);
+        cctx.lineTo(cx-60, cy+130);
+        cctx.closePath();
+        cctx.stroke();
+
+        cctx.beginPath();
+        cctx.moveTo(cx+60, cy+80);
+        cctx.lineTo(cx+120, cy+130);
+        cctx.lineTo(cx+60, cy+130);
+        cctx.closePath();
+        cctx.stroke();
+
+        cctx.beginPath();
+        cctx.arc(cx, cy-10, 22, 0, Math.PI*2);
+        cctx.stroke();
+
+        cctx.beginPath();
+        cctx.moveTo(cx, cy+170);
+        cctx.quadraticCurveTo(cx-30, cy+140, cx-10, cy+120);
+        cctx.quadraticCurveTo(cx, cy+135, cx+10, cy+120);
+        cctx.quadraticCurveTo(cx+30, cy+140, cx, cy+170);
+        cctx.closePath();
+        cctx.stroke();
+      }
+      else {
+        const r1 = 80, r2 = 34;
+        const pts = 10;
+        cctx.beginPath();
+        for(let i=0;i<pts;i++){
+          const a = (Math.PI*2/pts)*i - Math.PI/2;
+          const r = (i%2===0) ? r1 : r2;
+          const x = cx + Math.cos(a)*r;
+          const y = cy + Math.sin(a)*r;
+          if(i===0) cctx.moveTo(x,y); else cctx.lineTo(x,y);
+        }
+        cctx.closePath();
+        cctx.stroke();
+      }
+
+      cctx.restore();
+    }
+
+    function cStart(e){ coloring = true; clast = pointFromEvent(e, colorCanvas); e.preventDefault?.(); }
+    function cMove(e){
+      if(!coloring) return;
+      const p = pointFromEvent(e, colorCanvas);
+      cctx.save();
+      cctx.strokeStyle = paintColor;
+      cctx.lineWidth = paintSize;
+      cctx.lineCap = 'round';
+      cctx.lineJoin = 'round';
+      cctx.beginPath();
+      cctx.moveTo(clast.x, clast.y);
+      cctx.lineTo(p.x, p.y);
+      cctx.stroke();
+      cctx.restore();
+      clast = p;
+      e.preventDefault?.();
+    }
+    function cEnd(){ coloring = false; clast = null; }
+
+    colorCanvas.addEventListener('mousedown', cStart);
+    window.addEventListener('mousemove', cMove);
+    window.addEventListener('mouseup', cEnd);
+    colorCanvas.addEventListener('touchstart', cStart, {passive:false});
+    colorCanvas.addEventListener('touchmove', cMove, {passive:false});
+    colorCanvas.addEventListener('touchend', cEnd);
+
+    $$('[data-color]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        paintColor = btn.getAttribute('data-color');
+        toast('Color listo 🎨');
+        playTone(520, 0.08);
+      });
+    });
+
+    $('#brushSize').addEventListener('change', () => {
+      paintSize = Number($('#brushSize').value);
+      toast('Grosor: ' + paintSize);
+    });
+
+    $('#colorTemplate').addEventListener('change', () => {
+      drawTemplate($('#colorTemplate').value);
+      toast('Nuevo dibujo 🎨');
+    });
+
+    $('#btnColorReset').addEventListener('click', () => {
+      drawTemplate($('#colorTemplate').value);
+      toast('¡Limpio! 🧽');
+    });
+
+    // ---------------------- Writing text + read aloud ----------------------
+    $('#btnReadText').addEventListener('click', () => {
+      const t = ($('#textToRead').value || '').trim();
+      if(!t){ toast('Escribe algo 🙂'); playTone(220,0.08); return; }
+      speak(t);
+      toast('Leyendo… 🗣️');
+    });
+
+    $('#btnClearText').addEventListener('click', () => {
+      $('#textToRead').value = '';
+      toast('Listo 🧹');
+    });
+
+    $('#btnSticker').addEventListener('click', () => {
+      confettiEmojis();
+      toast(['⭐','🚀','🦖','🎉','✨'][Math.floor(Math.random()*5)] + ' ¡Sorpresa!');
+      playTone(720,0.10);
+    });
 
     // ---------------------- Games router (menu -> panel) ----------------------
     const gamesMenu = $('#gamesMenu');
